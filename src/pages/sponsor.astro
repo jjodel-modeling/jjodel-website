@@ -1,0 +1,129 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+
+const tiers = [
+  {
+    name: 'Gold',
+    amount: '€200/mo',
+    recognition: 'Logo on jjodel.io + newsletter mention',
+  },
+  {
+    name: 'Silver',
+    amount: '€100/mo',
+    recognition: 'Logo on jjodel.io',
+  },
+  {
+    name: 'Bronze',
+    amount: '€50/mo',
+    recognition: 'Medium logo on jjodel.io',
+  },
+  {
+    name: 'Backer',
+    amount: '€5/mo',
+    recognition: 'Name listed on jjodel.io',
+  },
+];
+---
+
+<BaseLayout
+  title="Sponsor | Jjodel"
+  description="Jjodel is MIT-licensed and free to use. Sponsorships fund development, infrastructure, educational resources, and community events."
+>
+  <section class="section">
+    <div class="container">
+      <h1>Sponsor Jjodel</h1>
+      <p class="muted">
+        Jjodel is MIT-licensed and free to use. Sponsorships help fund
+        development, infrastructure, educational resources, and community
+        events. Sponsors cannot influence technical or scientific direction.
+      </p>
+
+      <h2 class="mt-xl">Sponsorship tiers</h2>
+      <div class="tier-table">
+        <div class="tier-row tier-head">
+          <span>Tier</span>
+          <span>Amount</span>
+          <span>Recognition</span>
+        </div>
+        {
+          tiers.map((t) => (
+            <div class="tier-row">
+              <span class="tier-name">{t.name}</span>
+              <span class="small muted">{t.amount}</span>
+              <span class="small muted">{t.recognition}</span>
+            </div>
+          ))
+        }
+      </div>
+
+      <p class="muted mt-lg">
+        OpenCollective is a platform for transparent community funding. All
+        transactions, expenses, and contributions are publicly documented. You
+        can see exactly how funds are used.
+      </p>
+
+      <div class="btn-group mt-md">
+        <a
+          href="https://opencollective.com/jjodel/donate"
+          class="btn btn-primary"
+          rel="noopener"
+        >
+          Sponsor on OpenCollective →
+        </a>
+      </div>
+
+      <h2 class="mt-xl">Contact</h2>
+      <p class="muted">
+        For enterprise inquiries or partnership proposals, email{' '}
+        <a href="mailto:info@jjodel.io">info@jjodel.io</a>.
+      </p>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .tier-table {
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+    margin-top: 1rem;
+  }
+
+  .tier-row {
+    display: grid;
+    grid-template-columns: 120px 120px 1fr;
+    gap: 1rem;
+    padding: 0.9rem 1.25rem;
+    border-bottom: 1px solid var(--color-border);
+    align-items: center;
+    font-size: 14px;
+  }
+
+  .tier-row:last-child {
+    border-bottom: none;
+  }
+
+  .tier-head {
+    background: var(--color-bg-secondary);
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    color: var(--color-text-tertiary);
+    font-weight: 500;
+  }
+
+  .tier-name {
+    font-weight: 500;
+    color: var(--color-text);
+  }
+
+  @media (max-width: 768px) {
+    .tier-row {
+      grid-template-columns: 1fr 1fr;
+    }
+
+    .tier-row span:last-child {
+      grid-column: 1 / -1;
+    }
+  }
+</style>

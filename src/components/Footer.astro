@@ -1,0 +1,101 @@
+---
+---
+
+<footer class="footer">
+  <div class="footer-inner">
+    <div class="footer-brand">
+      <a href="/" class="footer-brand-link" aria-label="Jjodel home">
+        <img src="/jjodel-logo.png" alt="Jjodel" class="footer-logo" />
+      </a>
+      <p class="small muted">
+        Made by the SWEN group<br />
+        Università degli Studi dell'Aquila
+      </p>
+    </div>
+
+    <div class="footer-col">
+      <h4 class="label">Project</h4>
+      <ul>
+        <li><a href="/research">Research</a></li>
+        <li><a href="/team">Team</a></li>
+        <li><a href="/sponsor">Sponsor</a></li>
+      </ul>
+    </div>
+
+    <div class="footer-col">
+      <h4 class="label">Resources</h4>
+      <ul>
+        <li><a href="https://docs.jjodel.io" rel="noopener">Documentation</a></li>
+        <li><a href="https://github.com/jjodel-modeling" rel="noopener">GitHub</a></li>
+        <li><a href="https://opencollective.com/jjodel" rel="noopener">OpenCollective</a></li>
+      </ul>
+    </div>
+
+    <div class="footer-col">
+      <h4 class="label">Legal</h4>
+      <ul>
+        <li><a href="https://opensource.org/license/mit" rel="noopener">MIT License</a></li>
+        <li><a href="/privacy/">Privacy</a></li>
+      </ul>
+    </div>
+  </div>
+</footer>
+
+<style>
+  .footer {
+    border-top: 1px solid var(--color-border);
+    background: var(--color-bg);
+    margin-top: 4rem;
+  }
+
+  .footer-inner {
+    max-width: 1080px;
+    margin: 0 auto;
+    padding: 3rem 2rem;
+    display: grid;
+    grid-template-columns: 1.5fr 1fr 1fr 1fr;
+    gap: 2rem;
+  }
+
+  .footer-brand-link {
+    display: inline-block;
+    margin-bottom: 0.75rem;
+  }
+
+  .footer-logo {
+    display: block;
+    height: 32px;
+    width: auto;
+  }
+
+  .footer-col ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+
+  .footer-col li {
+    margin-bottom: 0.4rem;
+  }
+
+  .footer-col a {
+    font-size: 14px;
+    color: var(--color-text-secondary);
+  }
+
+  .footer-col a:hover {
+    color: var(--color-text);
+    text-decoration: none;
+  }
+
+  @media (max-width: 768px) {
+    .footer-inner {
+      grid-template-columns: 1fr 1fr;
+      gap: 1.5rem;
+    }
+
+    .footer-brand {
+      grid-column: 1 / -1;
+    }
+  }
+</style>

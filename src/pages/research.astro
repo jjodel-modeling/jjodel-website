@@ -1,0 +1,379 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { getCollection } from 'astro:content';
+
+const pubs = (await getCollection('publications')).sort(
+  (a, b) => b.data.year - a.data.year,
+);
+
+const keynotes = [
+  {
+    title: 'Transparency of Tools: Beyond Usability',
+    speaker: 'Alfonso Pierantonio',
+    venue: 'Keynote, MODELSWARD 2025, Porto',
+    url: 'https://modelsward.scitevents.org/KeynoteSpeakers.aspx?y=2025#3',
+  },
+  {
+    title: 'The Cognitive Science of Modeling Tools',
+    speaker: 'Alfonso Pierantonio',
+    venue: 'Guest Lecture, TU Wien, June 2025',
+    url: 'https://informatics.tuwien.ac.at/news/2876',
+  },
+  {
+    title: 'The Evolutionary Life of Metamodels',
+    speaker: 'Alfonso Pierantonio',
+    venue: 'Keynote, ME Workshop @ MODELS 2025, Canada',
+    url: 'https://models-and-evolution.github.io/',
+  },
+  {
+    title: 'Achieving Better Workbenches in MDE',
+    speaker: 'Alfonso Pierantonio',
+    venue: 'Keynote, MLE 2024',
+    url: null as string | null,
+  },
+];
+
+const conferenceTalks = [
+  {
+    title: 'Jjodel and Layout-Sensitive Notation',
+    speaker: 'Alfonso Pierantonio',
+    venue: 'LangDev 2025, Amsterdam',
+    url: null as string | null,
+  },
+  {
+    title: 'Real-Time Rooms for Collaborative Modeling',
+    speaker: 'Juri Di Rocco',
+    venue: 'LangDev 2025, Amsterdam',
+    url: null as string | null,
+  },
+];
+
+const comparisons = [
+  {
+    title: 'LSP/GLSP vs Jjodel',
+    desc: 'Architecture and interaction model differences',
+    url: '#',
+  },
+  {
+    title: 'EMF vs Jjodel',
+    desc: 'Generative vs reflective metamodeling',
+    url: '#',
+  },
+  {
+    title: 'Co-evolution',
+    desc: 'Live evolution across Jjodel, EMF/Sirius, MetaEdit+',
+    url: '#',
+  },
+];
+---
+
+<BaseLayout
+  title="Research | Jjodel"
+  description="Publications, projects, talks, and comparative insights behind the Jjodel metamodeling workbench."
+>
+  <section class="section">
+    <div class="container">
+      <h1>Research</h1>
+      <p class="muted intro">
+        Jjodel is a research project developed at the SWEN group, Università
+        degli Studi dell'Aquila. It investigates how to reduce accidental
+        complexity in model-driven engineering tools through a reflective,
+        cloud-native, and collaborative approach. Jjodel is part of EU-funded
+        research and has been published in peer-reviewed venues including
+        Software and Systems Modeling (SoSyM).
+      </p>
+
+      <h2 class="mt-xl">Projects</h2>
+      {/* TODO: aggiungere logo EU funding badge */}
+      <article class="card project-card">
+        <h3 class="project-card__title">AIM-PRO</h3>
+        <p class="project-card__tagline">
+          AI Literacy for Multidisciplinary Professional Readiness and Outreach
+        </p>
+        <ul class="project-card__facts">
+          <li>
+            Funded by the European Union (EACEA), Grant Agreement 101245864
+          </li>
+          <li>Duration: 36 months</li>
+          <li>Coordinator: Università degli Studi dell'Aquila</li>
+          <li>Partners: 15 organizations across 10 European countries</li>
+        </ul>
+        <p class="project-card__desc">
+          AIM-PRO develops educational frameworks integrating AI literacy with
+          Model-Driven Engineering. Jjodel serves as a core learning tool in
+          the project, enabling students and educators to work with
+          metamodeling directly in the browser without installation barriers.
+        </p>
+        <a
+          href="https://aim-pro.eu/"
+          class="project-card__link"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          Visit project website →
+        </a>
+      </article>
+
+      <h2 class="mt-xl">Publications</h2>
+      <ul class="pub-list">
+        {
+          pubs.map((pub) => (
+            <li class="pub-item">
+              <p class="pub-citation">
+                {pub.data.authors}. <strong>{pub.data.title}</strong>
+                {pub.data.badge && (
+                  <span class="pub-badge">{pub.data.badge}</span>
+                )}
+                . <em>{pub.data.venue}</em>, {pub.data.year}.
+                {pub.data.doi && (
+                  <>
+                    {' '}
+                    <a href={`https://doi.org/${pub.data.doi}`} rel="noopener">
+                      doi:{pub.data.doi} ↗
+                    </a>
+                  </>
+                )}
+                {pub.data.fulltext && (
+                  <>
+                    {' · '}
+                    <a href={pub.data.fulltext} rel="noopener">
+                      Fulltext ↗
+                    </a>
+                  </>
+                )}
+              </p>
+              {pub.data.description && (
+                <p class="pub-desc">{pub.data.description}</p>
+              )}
+            </li>
+          ))
+        }
+      </ul>
+
+      <h2 class="mt-xl">Keynotes and invited talks</h2>
+      <div class="keynote-list">
+        {
+          keynotes.map((t) => (
+            <div class="keynote-item">
+              <p class="keynote-title">
+                {t.url ? (
+                  <a href={t.url} rel="noopener">
+                    "{t.title}" ↗
+                  </a>
+                ) : (
+                  <>"{t.title}"</>
+                )}
+              </p>
+              <p class="keynote-meta">
+                {t.speaker} · {t.venue}
+              </p>
+            </div>
+          ))
+        }
+      </div>
+
+      <h3 class="mt-xl conf-heading">Conference talks</h3>
+      <ul class="talks-list">
+        {
+          conferenceTalks.map((t) => (
+            <li class="talk-item">
+              <span class="talk-title">
+                {t.url ? (
+                  <a href={t.url} rel="noopener">
+                    "{t.title}" ↗
+                  </a>
+                ) : (
+                  <>"{t.title}"</>
+                )}
+              </span>
+              <span class="small muted">
+                {' · '}
+                {t.speaker}, {t.venue}
+              </span>
+            </li>
+          ))
+        }
+      </ul>
+
+      <h2 class="mt-xl">How Jjodel compares</h2>
+      <p class="muted">
+        These comparisons explain how Jjodel differs from existing metamodeling
+        frameworks.
+      </p>
+      <div class="grid grid-3 mt-md">
+        {
+          comparisons.map((c) => (
+            <article class="card comp-card">
+              <h3 class="comp-title">{c.title}</h3>
+              <p class="small muted comp-desc">{c.desc}</p>
+              <a href={c.url} class="small" rel="noopener">
+                Read on docs.jjodel.io ↗
+              </a>
+            </article>
+          ))
+        }
+      </div>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .intro {
+    max-width: 720px;
+    line-height: 1.7;
+  }
+
+  .project-card {
+    margin-top: 1rem;
+  }
+
+  .project-card__title {
+    margin: 0 0 0.25rem;
+    font-size: 18px;
+    font-weight: 600;
+  }
+
+  .project-card__tagline {
+    margin: 0 0 1rem;
+    font-size: 15px;
+    color: var(--color-text-secondary);
+    font-style: italic;
+  }
+
+  .project-card__facts {
+    margin: 0 0 1rem;
+    padding-left: 1.25rem;
+    font-size: 14px;
+    color: var(--color-text-secondary);
+    line-height: 1.7;
+  }
+
+  .project-card__desc {
+    margin: 0 0 1rem;
+    font-size: 15px;
+    line-height: 1.7;
+    color: var(--color-text-secondary);
+  }
+
+  .project-card__link {
+    font-size: 14px;
+    font-weight: 500;
+  }
+
+  .pub-list,
+  .talks-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+
+  .pub-item {
+    padding: 0.9rem 0;
+    border-bottom: 1px solid var(--color-border);
+  }
+
+  .pub-item:last-child {
+    border-bottom: none;
+  }
+
+  .pub-citation {
+    margin: 0 0 0.25rem;
+    font-size: 14px;
+    line-height: 1.6;
+    color: var(--color-text-secondary);
+  }
+
+  .pub-citation strong {
+    color: var(--color-text);
+    font-weight: 500;
+  }
+
+  .pub-badge {
+    display: inline-block;
+    background: #e0f2fe;
+    color: #0284c7;
+    font-size: 11px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    padding: 2px 8px;
+    border-radius: 4px;
+    margin-left: 8px;
+    vertical-align: middle;
+  }
+
+  .pub-desc {
+    margin: 0;
+    font-size: 13px;
+    color: var(--color-text-tertiary);
+    line-height: 1.6;
+  }
+
+  .keynote-list {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .keynote-item {
+    padding: 0.75rem 0;
+    border-bottom: 1px solid var(--color-border);
+  }
+
+  .keynote-item:last-child {
+    border-bottom: none;
+  }
+
+  .keynote-title {
+    margin: 0 0 0.25rem;
+    font-size: 15px;
+    font-weight: 500;
+    color: var(--color-text);
+  }
+
+  .keynote-title a {
+    color: var(--color-text);
+  }
+
+  .keynote-title a:hover {
+    color: var(--jj-blue-600);
+  }
+
+  .keynote-meta {
+    margin: 0;
+    font-size: 13px;
+    color: var(--color-text-tertiary);
+  }
+
+  .conf-heading {
+    font-size: 16px;
+    font-weight: 500;
+    color: var(--color-text-secondary);
+  }
+
+  .talk-item {
+    padding: 0.5rem 0;
+    font-size: 14px;
+  }
+
+  .talk-title {
+    color: var(--color-text);
+    font-weight: 500;
+  }
+
+  .comp-card {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+
+  .comp-title {
+    margin: 0;
+    font-size: 15px;
+    font-weight: 500;
+  }
+
+  .comp-desc {
+    margin: 0;
+    flex: 1;
+  }
+</style>

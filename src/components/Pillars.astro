@@ -1,0 +1,81 @@
+---
+const pillars = [
+  {
+    icon: 'bi-box-seam',
+    iconBg: '#e0f2fe',
+    iconColor: '#0284c7',
+    title: 'All-in-one',
+    text: 'Define metamodels, design concrete syntaxes, write transformations, and apply refactorings. AI-assisted at every step. One tool, one environment. No integration headaches.',
+  },
+  {
+    icon: 'bi-browser-chrome',
+    iconBg: '#ccfbf1',
+    iconColor: '#0d9488',
+    title: 'Zero friction',
+    text: 'Open a browser, sign in, start working. Nothing to install, nothing to configure. Progressive disclosure keeps the interface simple until you need more.',
+  },
+  {
+    icon: 'bi-people',
+    iconBg: '#e0e7ff',
+    iconColor: '#4f46e5',
+    title: 'Collaborative',
+    text: 'Share projects in real-time with shared rooms. Students, colleagues, and reviewers work on the same models simultaneously. No files to exchange.',
+  },
+];
+---
+
+<section class="section-lg">
+  <div class="container-wide">
+    <div class="grid grid-3">
+      {
+        pillars.map((p) => (
+          <article class="card pillar">
+            <span
+              class="pillar-icon"
+              style={`background:${p.iconBg};color:${p.iconColor}`}
+              aria-hidden="true"
+            >
+              <i class={p.icon} />
+            </span>
+            <h3 class="pillar-title">{p.title}</h3>
+            <p class="pillar-text muted">{p.text}</p>
+          </article>
+        ))
+      }
+    </div>
+  </div>
+</section>
+
+<style>
+  .pillar {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+  .pillar-icon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 56px;
+    height: 56px;
+    border-radius: 12px;
+  }
+
+  .pillar-icon i {
+    font-size: 30px;
+    line-height: 1;
+  }
+
+  .pillar-title {
+    margin: 0;
+    font-size: 18px;
+    font-weight: 500;
+  }
+
+  .pillar-text {
+    margin: 0;
+    font-size: 15px;
+    line-height: 1.6;
+  }
+</style>

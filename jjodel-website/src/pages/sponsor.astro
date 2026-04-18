@@ -1,0 +1,111 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+
+const tiers = [
+  { name: 'Gold', amount: '€200/mo', recognition: 'Logo on jjodel.io + newsletter mention' },
+  { name: 'Silver', amount: '€100/mo', recognition: 'Logo on jjodel.io' },
+  { name: 'Bronze', amount: '€50/mo', recognition: 'Medium logo on jjodel.io' },
+  { name: 'Backer', amount: '€5/mo', recognition: 'Name listed on jjodel.io' },
+];
+---
+
+<BaseLayout title="Sponsor — Jjodel" description="Support Jjodel: an open-source metamodeling platform for research and education.">
+  <section class="page-header">
+    <h1>Sponsor Jjodel</h1>
+    <p class="page-header__subtitle">
+      Jjodel is MIT-licensed and free to use. Sponsorships help fund development, infrastructure,
+      educational resources, and community events. Sponsors cannot influence technical or scientific direction.
+    </p>
+  </section>
+
+  <section class="section">
+    <h2>Sponsorship tiers</h2>
+    <div class="tiers">
+      {tiers.map(tier => (
+        <div class="card tier">
+          <p class="tier__name">{tier.name}</p>
+          <p class="tier__amount">{tier.amount}</p>
+          <p class="tier__recognition">{tier.recognition}</p>
+        </div>
+      ))}
+    </div>
+  </section>
+
+  <section class="section">
+    <h2>How sponsorships help</h2>
+    <p class="sponsor-text">Your contribution directly supports development of new features, maintenance of servers and collaborative infrastructure, educational resources and workshops, and outreach events.</p>
+  </section>
+
+  <section class="section">
+    <h2>Sponsorship policy</h2>
+    <p class="sponsor-text">Independence is preserved: sponsors cannot influence scientific, technical, or community directions. Transparency is guaranteed: all sponsors are publicly acknowledged. Open-source integrity is protected: sponsorships do not create proprietary advantages.</p>
+  </section>
+
+  <section class="sponsor-cta">
+    <a href="https://opencollective.com/jjodel/donate" class="btn btn--primary" target="_blank" rel="noopener noreferrer">Sponsor on OpenCollective →</a>
+    <p class="sponsor-cta__contact">Have a different proposal? Contact us at <a href="mailto:info@jjodel.io">info@jjodel.io</a></p>
+  </section>
+</BaseLayout>
+
+<style>
+  .page-header {
+    padding: 2.5rem 0 1rem;
+  }
+
+  .page-header__subtitle {
+    font-size: 1.06rem;
+    color: var(--color-text-secondary);
+    margin-top: 0.5rem;
+    max-width: 600px;
+  }
+
+  .tiers {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 12px;
+  }
+
+  .tier__name {
+    font-size: 0.882rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    color: var(--color-text-secondary);
+    margin-bottom: 4px;
+  }
+
+  .tier__amount {
+    font-size: 1.41rem;
+    font-weight: 600;
+    margin-bottom: 8px;
+  }
+
+  .tier__recognition {
+    font-size: 0.882rem;
+    color: var(--color-text-secondary);
+  }
+
+  .sponsor-text {
+    font-size: 0.941rem;
+    color: var(--color-text-secondary);
+    max-width: 600px;
+    line-height: 1.7;
+  }
+
+  .sponsor-cta {
+    padding: 2rem 0;
+    border-top: 1px solid var(--color-border);
+  }
+
+  .sponsor-cta__contact {
+    margin-top: 1rem;
+    font-size: 0.882rem;
+    color: var(--color-text-tertiary);
+  }
+
+  @media (max-width: 768px) {
+    .tiers {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>

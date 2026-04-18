@@ -1,0 +1,138 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Announcement from '../components/Announcement.astro';
+import Hero from '../components/Hero.astro';
+import Pillars from '../components/Pillars.astro';
+import ActivityFeed from '../components/ActivityFeed.astro';
+import Partners from '../components/Partners.astro';
+---
+
+<BaseLayout
+  title="Jjodel | Open-source metamodeling platform"
+  description="Jjodel is a cloud-based metamodeling workbench for research and education. Define your DSL, create models, apply transformations, and collaborate in real time."
+>
+  <Announcement />
+  <Hero />
+
+  <Pillars />
+
+  <ActivityFeed />
+
+  <section class="section-lg">
+    <div class="container-wide">
+      <div class="educators__box">
+        <div class="educators__content">
+          <h3 class="educators__title">For educators</h3>
+          <p class="educators__text">
+            Students open a browser and start modeling. No Eclipse, no EMF, no
+            lab setup. Jjodel runs on any device with a browser. Used in MDE
+            courses at Università dell'Aquila, Mälardalen University, and
+            academic tutorials at MODELS and MLE.
+          </p>
+          <a href="/teaching/" class="educators__link">
+            Teaching with Jjodel →
+          </a>
+        </div>
+        <div class="educators__illustration">
+          <img
+            src="/teaching-illustration.png"
+            alt="Illustration of modeling and teaching"
+          />
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <Partners />
+
+  <section class="section-lg bottom-cta">
+    <div class="container-wide text-center">
+      <h2 class="cta-title">Ready to try?</h2>
+      <p class="muted cta-sub">
+        Free, open-source, MIT-licensed. No account required to explore.
+      </p>
+      <div class="btn-group mt-lg" style="justify-content:center">
+        <a href="https://app.jjodel.io" class="btn btn-primary" rel="noopener">
+          Open Jjodel →
+        </a>
+        <a
+          href="https://github.com/jjodel-modeling"
+          class="btn btn-secondary"
+          rel="noopener"
+        >
+          View on GitHub
+        </a>
+      </div>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .educators__box {
+    background: var(--color-bg-secondary);
+    border-radius: var(--radius-lg);
+    padding: 2rem;
+    display: flex;
+    align-items: center;
+    gap: 2rem;
+  }
+
+  .educators__content {
+    flex: 1;
+  }
+
+  .educators__title {
+    font-size: 1.06rem;
+    font-weight: 500;
+    margin: 0 0 10px;
+  }
+
+  .educators__text {
+    font-size: 0.941rem;
+    line-height: 1.7;
+    color: var(--color-text-secondary);
+    margin: 0 0 14px;
+  }
+
+  .educators__link {
+    font-size: 0.882rem;
+    font-weight: 500;
+  }
+
+  .educators__illustration {
+    flex-shrink: 0;
+    width: 210px;
+  }
+
+  .educators__illustration img {
+    width: 100%;
+    height: auto;
+    display: block;
+  }
+
+  @media (max-width: 768px) {
+    .educators__box {
+      flex-direction: column;
+    }
+
+    .educators__illustration {
+      width: 150px;
+    }
+  }
+
+  .bottom-cta {
+    border-top: 1px solid var(--color-border);
+    border-bottom: 1px solid var(--color-border);
+  }
+
+  .cta-title {
+    font-size: 22px;
+    font-weight: 500;
+    margin: 0 0 0.5rem;
+  }
+
+  .cta-sub {
+    font-size: 15px;
+  }
+
+</style>

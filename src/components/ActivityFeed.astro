@@ -1,0 +1,103 @@
+---
+import { getCollection } from 'astro:content';
+
+const limit = 6;
+const allNews = await getCollection('news');
+const items = allNews
+  .sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf())
+  .slice(0, limit);
+
+const typeLabel: Record<string, string> = {
+  paper: 'Paper',
+  talk: 'Talk',
+  keynote: 'Keynote',
+  release: 'Release',
+  project: 'Project',
+  tutorial: 'Tutorial',
+};
+---
+
+<section class="section-lg">
+  <div class="container-wide">
+    <span class="label">Latest activity</span>
+    <ul class="feed">
+      {
+        items.map((item) => (
+          <li class="feed-row">
+            <span class="feed-type tertiary">{typeLabel[item.data.type]}</span>
+            <span class="feed-title">
+              {item.data.url ? (
+                <a href={item.data.url} rel="noopener">
+                  {item.data.title} ↗
+                </a>
+              ) : (
+                item.data.title
+              )}
+            </span>
+            {item.data.venue && (
+              <span class="feed-venue tertiary">{item.data.venue}</span>
+            )}
+          </li>
+        ))
+      }
+    </ul>
+  </div>
+</section>
+
+<style>
+  .feed {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+
+  .feed-row {
+    display: grid;
+    grid-template-columns: 56px 1fr auto;
+    gap: 1.25rem;
+    align-items: baseline;
+    padding: 14px 0;
+    border-bottom: 1px solid var(--color-border);
+  }
+
+  .feed-row:last-child {
+    border-bottom: none;
+  }
+
+  .feed-type {
+    font-size: 12px;
+    text-transform: uppercase;
+    letter-spacing: 1.2px;
+    font-weight: 500;
+  }
+
+  .feed-title {
+    font-size: 16px;
+    color: var(--color-text);
+  }
+
+  .feed-title a {
+    color: var(--color-text);
+  }
+
+  .feed-title a:hover {
+    color: var(--jj-blue-600);
+  }
+
+  .feed-venue {
+    text-align: right;
+    white-space: nowrap;
+    font-size: 14px;
+  }
+
+  @media (max-width: 768px) {
+    .feed-row {
+      grid-template-columns: 1fr;
+      gap: 0.25rem;
+    }
+
+    .feed-venue {
+      text-align: left;
+    }
+  }
+</style>

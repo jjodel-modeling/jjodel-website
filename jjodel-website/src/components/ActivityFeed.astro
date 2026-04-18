@@ -1,0 +1,85 @@
+---
+interface FeedItem {
+  type: string;
+  title: string;
+  venue: string;
+  url?: string;
+}
+
+interface Props {
+  items: FeedItem[];
+}
+
+const { items } = Astro.props;
+---
+
+<section class="feed section">
+  <p class="section-label">Latest activity</p>
+  <div class="feed__list">
+    {items.map((item, i) => (
+      <div class:list={['feed__row', { 'feed__row--last': i === items.length - 1 }]}>
+        <span class="feed__type">{item.type}</span>
+        {item.url ? (
+          <a href={item.url} class="feed__title" target="_blank" rel="noopener noreferrer">{item.title}</a>
+        ) : (
+          <span class="feed__title">{item.title}</span>
+        )}
+        <span class="feed__venue">{item.venue}</span>
+      </div>
+    ))}
+  </div>
+</section>
+
+<style>
+  .feed__row {
+    display: flex;
+    align-items: baseline;
+    gap: 16px;
+    padding: 14px 0;
+    border-bottom: 1px solid var(--color-border);
+  }
+
+  .feed__row--last {
+    border-bottom: none;
+  }
+
+  .feed__type {
+    font-size: 0.706rem;
+    color: var(--color-text-tertiary);
+    min-width: 56px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    flex-shrink: 0;
+  }
+
+  .feed__title {
+    font-size: 0.941rem;
+    color: var(--color-text);
+    flex: 1;
+    text-decoration: none;
+  }
+
+  a.feed__title:hover {
+    text-decoration: underline;
+  }
+
+  .feed__venue {
+    font-size: 0.824rem;
+    color: var(--color-text-tertiary);
+    flex-shrink: 0;
+    text-align: right;
+  }
+
+  @media (max-width: 768px) {
+    .feed__row {
+      flex-wrap: wrap;
+      gap: 4px 12px;
+    }
+
+    .feed__venue {
+      width: 100%;
+      text-align: left;
+      padding-left: 72px;
+    }
+  }
+</style>

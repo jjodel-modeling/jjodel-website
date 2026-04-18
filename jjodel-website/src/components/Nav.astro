@@ -1,0 +1,154 @@
+---
+const currentPath = Astro.url.pathname;
+
+const links = [
+  { label: 'Home', href: '/' },
+  { label: 'Research', href: '/research/' },
+  { label: 'Team', href: '/team/' },
+  { label: 'Docs', href: 'https://docs.jjodel.io', external: true },
+  { label: 'GitHub', href: 'https://github.com/jjodel-modeling', external: true },
+];
+---
+
+<nav class="nav">
+  <div class="nav__inner container">
+    <a href="/" class="nav__logo">
+      <img src="/jjodel-logo-light.png" alt="Jjodel" height="30" />
+    </a>
+
+    <button class="nav__toggle" aria-label="Toggle menu" aria-expanded="false">
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
+
+    <div class="nav__links">
+      {links.map(link => (
+        <a
+          href={link.href}
+          class:list={['nav__link', { 'nav__link--active': !link.external && currentPath === link.href }]}
+          {...(link.external ? { target: '_blank', rel: 'noopener noreferrer' } : {})}
+        >
+          {link.label}{link.external ? ' ↗' : ''}
+        </a>
+      ))}
+      <a href="https://app.jjodel.io" class="btn btn--primary nav__cta">Try Jjodel</a>
+    </div>
+  </div>
+</nav>
+
+<script>
+  const toggle = document.querySelector('.nav__toggle');
+  const links = document.querySelector('.nav__links');
+  if (toggle && links) {
+    toggle.addEventListener('click', () => {
+      const expanded = toggle.getAttribute('aria-expanded') === 'true';
+      toggle.setAttribute('aria-expanded', String(!expanded));
+      links.classList.toggle('nav__links--open');
+    });
+  }
+</script>
+
+<style>
+  .nav {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    background: var(--color-bg);
+    border-bottom: 1px solid var(--color-border);
+  }
+
+  .nav__inner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 64px;
+  }
+
+  .nav__logo {
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+  }
+
+  .nav__logo img {
+    height: 30px;
+    width: auto;
+  }
+
+  .nav__links {
+    display: flex;
+    align-items: center;
+    gap: 28px;
+  }
+
+  .nav__link {
+    font-size: 0.882rem;
+    color: var(--color-text-secondary);
+    text-decoration: none;
+    font-weight: 400;
+    transition: color 0.15s;
+  }
+
+  .nav__link:hover {
+    color: var(--color-text);
+    text-decoration: none;
+  }
+
+  .nav__link--active {
+    color: var(--color-text);
+    font-weight: 500;
+  }
+
+  .nav__cta {
+    padding: 8px 18px;
+    font-size: 0.824rem;
+  }
+
+  .nav__toggle {
+    display: none;
+    flex-direction: column;
+    gap: 5px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 4px;
+  }
+
+  .nav__toggle span {
+    display: block;
+    width: 20px;
+    height: 2px;
+    background: var(--color-text);
+    border-radius: 1px;
+    transition: transform 0.2s, opacity 0.2s;
+  }
+
+  @media (max-width: 768px) {
+    .nav__toggle {
+      display: flex;
+    }
+
+    .nav__links {
+      display: none;
+      position: absolute;
+      top: 64px;
+      left: 0;
+      right: 0;
+      background: var(--color-bg);
+      border-bottom: 1px solid var(--color-border);
+      flex-direction: column;
+      padding: 1.5rem 2rem;
+      gap: 16px;
+      align-items: flex-start;
+    }
+
+    .nav__links--open {
+      display: flex;
+    }
+
+    .nav__cta {
+      margin-top: 8px;
+    }
+  }
+</style>

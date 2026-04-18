@@ -1,0 +1,336 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+
+const courses = [
+  {
+    university: "Università dell'Aquila",
+    course: 'Model-Driven Engineering',
+    level: 'Master',
+    country: 'Italy',
+    logo: '/logos/univaq.png',
+    contacts: ['Alfonso Pierantonio', 'Juri Di Rocco'],
+  },
+  {
+    university: 'Mälardalen University',
+    course: 'Software Engineering',
+    level: 'Master',
+    country: 'Sweden',
+    logo: '/logos/mdu.svg',
+    contacts: ['Antonio Cicchetti', 'Malvina Latifaj'],
+  },
+  {
+    university: "Université Côte d'Azur",
+    course: 'Software Engineering',
+    level: 'Master',
+    country: 'France',
+    logo: '/logos/unicotedazur.png',
+    contacts: [] as string[],
+  },
+  {
+    university: 'TU Wien',
+    course: 'Guest Lecture',
+    level: 'Invited',
+    country: 'Austria',
+    logo: '/logos/tuwien.png',
+    contacts: ['Dominik Bork', 'Gerti Kappel'],
+  },
+];
+
+const tutorials = [
+  { title: 'Collaborative Modeling with Jjodel', venue: 'MODELS 2025', type: 'Tutorial' },
+  { title: 'MLE Workshop: Better Workbenches in MDE', venue: 'MLE 2024', type: 'Keynote + hands-on' },
+  { title: 'LangDev 2025: Real-Time Rooms', venue: 'LangDev 2025', type: 'Tool demo' },
+];
+---
+
+<BaseLayout
+  title="Teaching | Jjodel"
+  description="Using Jjodel for teaching Model-Driven Engineering in university courses and academic tutorials."
+>
+  <div class="container">
+    <section class="page-header">
+      <h1>Teaching with Jjodel</h1>
+      <p class="page-header__subtitle">
+        Jjodel removes installation barriers from MDE education. Students open a
+        browser and start modeling.
+      </p>
+    </section>
+
+    <section class="section why-section">
+      <div class="why-section__text">
+        <h2>Why Jjodel for teaching</h2>
+        <p class="teaching-text">
+          Traditional MDE tools require complex setup: Eclipse installations,
+          EMF plugins, specific JDK versions, lab machine configurations.
+          Students spend time debugging tool issues instead of learning
+          modeling concepts.
+        </p>
+        <p class="teaching-text">
+          Jjodel runs entirely in the browser. Students sign in and start
+          working. The instructor creates a project, students join a shared
+          room. Changes are visible in real time. No installation, no
+          configuration, no "it works on my machine" problems.
+        </p>
+        <p class="teaching-text">
+          The reflective architecture means feedback is instant: change a
+          metamodel constraint, see the effect on models immediately. This
+          supports experiential learning where students can explore
+          abstraction, classification, and meta-modeling by doing.
+        </p>
+      </div>
+      <div class="why-section__illustration">
+        <img
+          src="/teaching-illustration.png"
+          alt="Illustration of modeling and teaching"
+        />
+      </div>
+    </section>
+
+    <section class="section">
+      <h2>Where Jjodel is used</h2>
+      {/* TODO: aggiungere file PNG/SVG dei loghi in public/logos/ (univaq.png, mdu.svg, unicotedazur.png, tuwien.png) */}
+      <div class="courses-grid">
+        {
+          courses.map((c) => (
+            <div class="card course-card">
+              <div class="course-card__header">
+                <img
+                  src={c.logo}
+                  alt={c.university}
+                  class="course-card__logo"
+                />
+                <p class="course-card__uni">{c.university}</p>
+              </div>
+              <p class="course-card__course">{c.course}</p>
+              <p class="course-card__meta">
+                {c.level} · {c.country}
+              </p>
+              {c.contacts.length > 0 && (
+                <p class="course-card__contacts">
+                  Contact: {c.contacts.join(', ')}
+                </p>
+              )}
+            </div>
+          ))
+        }
+      </div>
+    </section>
+
+    <section class="section">
+      <h2>Academic tutorials and workshops</h2>
+      <div class="tutorials-list">
+        {
+          tutorials.map((t) => (
+            <div class="tutorial-row">
+              <span class="tutorial-row__type">{t.type}</span>
+              <span class="tutorial-row__title">{t.title}</span>
+              <span class="tutorial-row__venue">{t.venue}</span>
+            </div>
+          ))
+        }
+      </div>
+    </section>
+
+    <section class="section">
+      <h2>Resources for instructors</h2>
+      <p class="teaching-text">
+        Jjodel documentation includes step-by-step tutorials designed for
+        classroom use. Each tutorial covers a specific MDE concept and can be
+        completed in a single lab session.
+      </p>
+      <div class="teaching-links">
+        <a
+          href="https://docs.jjodel.io/getting-started/"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          Getting started guide ↗
+        </a>
+        <a
+          href="https://docs.jjodel.io/tutorials/"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          Step-by-step tutorials ↗
+        </a>
+        <a
+          href="https://docs.jjodel.io/concepts/"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          Core concepts ↗
+        </a>
+      </div>
+    </section>
+
+    <section class="section">
+      <p class="teaching-text">
+        Interested in using Jjodel in your course? Contact us at{' '}
+        <a href="mailto:info@jjodel.io">info@jjodel.io</a>.
+      </p>
+    </section>
+  </div>
+</BaseLayout>
+
+<style>
+  .page-header {
+    padding: 2.5rem 0 1rem;
+  }
+
+  .page-header__subtitle {
+    font-size: 1.06rem;
+    color: var(--color-text-secondary);
+    margin-top: 0.5rem;
+  }
+
+  .teaching-text {
+    font-size: 0.941rem;
+    color: var(--color-text-secondary);
+    max-width: 600px;
+    line-height: 1.7;
+  }
+
+  .why-section {
+    display: flex;
+    align-items: flex-start;
+    gap: 2.5rem;
+  }
+
+  .why-section__text {
+    flex: 1;
+    min-width: 0;
+  }
+
+  .why-section__illustration {
+    flex-shrink: 0;
+    width: 240px;
+    margin-top: 2.5rem;
+  }
+
+  .why-section__illustration img {
+    width: 100%;
+    height: auto;
+    display: block;
+  }
+
+  .courses-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 12px;
+  }
+
+  .course-card__header {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 12px;
+  }
+
+  .course-card__logo {
+    height: 32px;
+    width: auto;
+    object-fit: contain;
+    flex-shrink: 0;
+  }
+
+  .course-card__uni {
+    font-size: 0.882rem;
+    font-weight: 500;
+    margin: 0;
+  }
+
+  .course-card__course {
+    font-size: 1rem;
+    font-weight: 500;
+    color: var(--color-text);
+    margin: 0 0 4px;
+  }
+
+  .course-card__meta {
+    font-size: 0.765rem;
+    color: var(--color-text-tertiary);
+    margin: 0 0 4px;
+  }
+
+  .course-card__contacts {
+    font-size: 0.765rem;
+    color: var(--color-text-tertiary);
+    margin: 0;
+  }
+
+  .tutorials-list {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .tutorial-row {
+    display: flex;
+    align-items: baseline;
+    gap: 16px;
+    padding: 10px 0;
+    border-bottom: 1px solid var(--color-border);
+  }
+
+  .tutorial-row:last-child {
+    border-bottom: none;
+  }
+
+  .tutorial-row__type {
+    font-size: 0.706rem;
+    color: var(--color-text-tertiary);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    min-width: 100px;
+    flex-shrink: 0;
+  }
+
+  .tutorial-row__title {
+    font-size: 0.941rem;
+    flex: 1;
+  }
+
+  .tutorial-row__venue {
+    font-size: 0.824rem;
+    color: var(--color-text-tertiary);
+    flex-shrink: 0;
+  }
+
+  .teaching-links {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    margin-top: 1rem;
+  }
+
+  .teaching-links a {
+    font-size: 0.882rem;
+    font-weight: 500;
+  }
+
+  @media (max-width: 768px) {
+    .courses-grid {
+      grid-template-columns: 1fr;
+    }
+
+    .tutorial-row {
+      flex-wrap: wrap;
+      gap: 4px 12px;
+    }
+
+    .tutorial-row__venue {
+      width: 100%;
+      padding-left: 116px;
+    }
+
+    .why-section {
+      flex-direction: column;
+      gap: 1.5rem;
+    }
+
+    .why-section__illustration {
+      width: 180px;
+      margin-top: 0;
+      align-self: center;
+    }
+  }
+</style>

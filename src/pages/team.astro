@@ -1,0 +1,211 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+
+type Person = {
+  name: string;
+  role: string;
+  affiliation: string;
+  url?: string;
+};
+
+const team: Person[] = [
+  {
+    name: 'Alfonso Pierantonio',
+    role: 'Principal Investigator',
+    affiliation: "Università dell'Aquila",
+    url: 'https://disim.univaq.it/AlfonsoPierantonio/',
+  },
+  {
+    name: 'Juri Di Rocco',
+    role: 'Assistant Professor',
+    affiliation: "Università dell'Aquila",
+    url: 'https://disim.univaq.it/JuriDiRocco',
+  },
+  {
+    name: 'Antonio Bucchiarone',
+    role: 'Associate Professor',
+    affiliation: "Università dell'Aquila",
+    url: 'https://disim.univaq.it/AntonioBucchiarone',
+  },
+  {
+    name: 'Damiano Di Vincenzo',
+    role: 'Chief Architect',
+    affiliation: "Università dell'Aquila",
+  },
+  {
+    name: 'Andrea Perelli',
+    role: 'Software Engineer',
+    affiliation: 'Private Consultant',
+  },
+  {
+    name: 'Giordano Tinella',
+    role: 'Contributor',
+    affiliation: "Università dell'Aquila",
+  },
+];
+
+const partners: Person[] = [
+  {
+    name: 'Antonio Cicchetti',
+    role: 'Professor',
+    affiliation: 'Mälardalen University',
+  },
+  {
+    name: 'Malvina Latifaj',
+    role: 'Contributor',
+    affiliation: 'Mälardalen University',
+  },
+  {
+    name: 'Robbert Jongeling',
+    role: 'Contributor',
+    affiliation: 'University of York',
+  },
+];
+
+function initials(name: string): string {
+  return name
+    .split(' ')
+    .map((part) => part[0])
+    .filter(Boolean)
+    .slice(0, 2)
+    .join('')
+    .toUpperCase();
+}
+---
+
+<BaseLayout
+  title="Team | Jjodel"
+  description="Jjodel is built by the SWEN research group at Università degli Studi dell'Aquila."
+>
+  <section class="section">
+    <div class="container">
+      <h1>Team and partners</h1>
+      <p class="muted">
+        Jjodel is built by the SWEN research group at Università degli Studi
+        dell'Aquila, Italy.
+      </p>
+
+      <div class="grid grid-2 mt-lg">
+        {
+          team.map((p) => (
+            <article class="card person">
+              <span class="avatar" aria-hidden="true">
+                {initials(p.name)}
+              </span>
+              <div class="person-body">
+                <p class="person-name">
+                  {p.url ? (
+                    <a href={p.url} rel="noopener">
+                      {p.name} ↗
+                    </a>
+                  ) : (
+                    p.name
+                  )}
+                </p>
+                <p class="small muted person-meta">
+                  {p.role}<br />
+                  {p.affiliation}
+                </p>
+              </div>
+            </article>
+          ))
+        }
+      </div>
+
+      <h2 class="mt-xl">Partners</h2>
+      <div class="grid grid-2 mt-md">
+        {
+          partners.map((p) => (
+            <article class="card person">
+              <span class="avatar" aria-hidden="true">
+                {initials(p.name)}
+              </span>
+              <div class="person-body">
+                <p class="person-name">{p.name}</p>
+                <p class="small muted person-meta">
+                  {p.role}<br />
+                  {p.affiliation}
+                </p>
+              </div>
+            </article>
+          ))
+        }
+      </div>
+
+      <h2 class="mt-xl">Contribute</h2>
+      <p class="muted">
+        Jjodel is open-source and MIT-licensed. Contributions are welcome: bug
+        reports, feature requests, documentation improvements, or code.
+      </p>
+      <ul class="plain-list">
+        <li>
+          <a
+            href="https://github.com/jjodel-modeling/jjodel-frontend/issues"
+            rel="noopener"
+          >
+            View open issues on GitHub →
+          </a>
+        </li>
+        <li>
+          <a href="#">Read the contributing guide →</a>
+        </li>
+      </ul>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .person {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+  }
+
+  .avatar {
+    flex-shrink: 0;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 56px;
+    height: 56px;
+    border-radius: 50%;
+    background: var(--jj-slate-100);
+    color: var(--jj-slate-700);
+    font-weight: 500;
+    font-size: 15px;
+  }
+
+  .person-body {
+    min-width: 0;
+  }
+
+  .person-name {
+    margin: 0 0 0.25rem;
+    font-size: 15px;
+    font-weight: 500;
+    color: var(--color-text);
+  }
+
+  .person-name a {
+    color: var(--color-text);
+  }
+
+  .person-name a:hover {
+    color: var(--jj-blue-600);
+  }
+
+  .person-meta {
+    margin: 0;
+  }
+
+  .plain-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+
+  .plain-list li {
+    padding: 0.25rem 0;
+    font-size: 14px;
+  }
+</style>

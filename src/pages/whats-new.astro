@@ -1,0 +1,181 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+
+const features = [
+  {
+    title: 'JjTL: model-to-model transformations',
+    description:
+      'A new transformation language that maps source metamodel elements to target metamodel elements. Two-pass execution: first pass creates instances, second pass resolves attributes and cross-type references via trace. Supports guards with the where keyword.',
+  },
+  {
+    title: 'JjEL: three-level expression language',
+    description:
+      'Unified expression language with three abstraction levels. Built-in collections (classes, attributes, references) at L1, context variables (data, node) at L2, and raw JjOM access at L3. No more $ prefix for user features.',
+  },
+  {
+    title: 'JjScript: metamodel manipulation',
+    description:
+      'A scripting language for programmatic metamodel operations. 19 commands including forall, let, and eval. Execute sequences of operations on metamodels and models from the Console.',
+  },
+  {
+    title: 'Redesigned UI',
+    description:
+      'Progressive disclosure throughout the interface. Basic and Advanced modes in every panel. Reduced cognitive load without sacrificing functionality. New Transformation Editor for defining and executing JjTL transformations.',
+  },
+  {
+    title: 'Megamodel view',
+    description:
+      'A project-level visualization showing all metamodels, models, transformations, and their relationships (conformsTo, inputOf, outputOf, generatedBy) in a single interactive diagram.',
+  },
+  {
+    title: 'Improved Console',
+    description:
+      'Evaluate JjEL expressions interactively. Inspect model instances, query collections, navigate references. Context-aware with access to the current data object and node.',
+  },
+];
+---
+
+<BaseLayout
+  title="What's new in Jjodel 3.0 | Jjodel"
+  description="New features in Jjodel 3.0: JjTL transformations, JjEL expressions, redesigned UI, and more."
+>
+  <div class="container">
+    <section class="page-header">
+      <h1>What's new in Jjodel 3.0</h1>
+      <p class="page-header__subtitle">
+        Jjodel 3.0 introduces three domain-specific languages, a redesigned
+        interface, and a new transformation engine. The beta is available now.
+      </p>
+      <div class="page-header__cta">
+        <a href="https://beta.jjodel.io" class="btn btn-primary" rel="noopener">
+          Try the beta →
+        </a>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="features-grid">
+        {
+          features.map((f) => (
+            <div class="card feature-card">
+              <h3 class="feature-card__title">{f.title}</h3>
+              <p class="feature-card__desc">{f.description}</p>
+            </div>
+          ))
+        }
+      </div>
+    </section>
+
+    <section class="section">
+      <h2>Status</h2>
+      <p class="status-text">
+        Jjodel 3.0 is in beta. The core modeling infrastructure is stable. The
+        transformation pipeline (JjTL) and expression language (JjEL) are
+        functional with known limitations being addressed before the stable
+        release.
+      </p>
+      <p class="status-text">
+        Bug reports and feedback are welcome on{' '}
+        <a
+          href="https://github.com/jjodel-modeling/jjodel-frontend/issues"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          GitHub
+        </a>.
+      </p>
+    </section>
+
+    <section class="section">
+      <h2>Documentation</h2>
+      <p class="status-text">
+        Full documentation for the new languages and features is available on
+        the docs site.
+      </p>
+      <div class="docs-links">
+        <a
+          href="https://docs.jjodel.io/languages/jjel/"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          JjEL Reference ↗
+        </a>
+        <a
+          href="https://docs.jjodel.io/languages/jjtl/"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          JjTL Reference ↗
+        </a>
+        <a
+          href="https://docs.jjodel.io/languages/jjscript/"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          JjScript Reference ↗
+        </a>
+      </div>
+    </section>
+  </div>
+</BaseLayout>
+
+<style>
+  .page-header {
+    padding: 2.5rem 0 1rem;
+  }
+
+  .page-header__subtitle {
+    font-size: 1.06rem;
+    color: var(--color-text-secondary);
+    margin-top: 0.5rem;
+    max-width: 600px;
+  }
+
+  .page-header__cta {
+    margin-top: 1.5rem;
+  }
+
+  .features-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 16px;
+  }
+
+  .feature-card__title {
+    font-size: 1rem;
+    font-weight: 500;
+    margin: 0 0 8px;
+  }
+
+  .feature-card__desc {
+    font-size: 0.882rem;
+    line-height: 1.6;
+    color: var(--color-text-secondary);
+    margin: 0;
+  }
+
+  .status-text {
+    font-size: 0.941rem;
+    color: var(--color-text-secondary);
+    max-width: 600px;
+    line-height: 1.7;
+  }
+
+  .docs-links {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    margin-top: 1rem;
+  }
+
+  .docs-links a {
+    font-size: 0.882rem;
+    font-weight: 500;
+  }
+
+  @media (max-width: 768px) {
+    .features-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>

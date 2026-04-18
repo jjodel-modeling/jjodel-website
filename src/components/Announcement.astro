@@ -1,0 +1,326 @@
+---
+const announcement = {
+  enabled: true,
+  badge: 'Coming soon',
+  title: 'Jjodel 3.0',
+  headline:
+    'A completely redesigned metamodeling experience. New transformation engine, new expression language, new UI.',
+  message:
+    'The beta is live. Try it now and help us shape the next generation of web-based metamodeling.',
+  primaryAction: { label: 'Try the beta →', url: 'https://beta.jjodel.io' },
+  secondaryAction: { label: "Learn what's new", url: '/whats-new/' },
+  dismissKey: 'announcement-v1',
+};
+---
+
+{
+  announcement.enabled && (
+    <div class="ann-backdrop" id="ann-backdrop">
+      <div class="ann-modal" id="ann-modal">
+        <div class="ann-header">
+          <div class="ann-bubble ann-bubble--1" />
+          <div class="ann-bubble ann-bubble--2" />
+          <div class="ann-bubble ann-bubble--3" />
+
+          <button
+            class="ann-close"
+            id="ann-close"
+            aria-label="Close announcement"
+          >
+            <i class="bi bi-x-lg" />
+          </button>
+
+          {announcement.badge && (
+            <span class="ann-badge">{announcement.badge}</span>
+          )}
+          <p class="ann-title">{announcement.title}</p>
+          <p class="ann-headline">{announcement.headline}</p>
+        </div>
+
+        <div class="ann-body">
+          <p class="ann-message">{announcement.message}</p>
+          <div class="ann-actions">
+            {announcement.primaryAction && (
+              <a
+                href={announcement.primaryAction.url}
+                class="ann-btn-primary"
+                rel="noopener"
+              >
+                {announcement.primaryAction.label}
+              </a>
+            )}
+            {announcement.secondaryAction && (
+              <a
+                href={announcement.secondaryAction.url}
+                class="ann-btn-secondary"
+              >
+                {announcement.secondaryAction.label}
+              </a>
+            )}
+          </div>
+        </div>
+      </div>
+    </div>
+  )
+}
+
+{
+  announcement.enabled && (
+    <script define:vars={{ dismissKey: announcement.dismissKey }}>
+      document.addEventListener('DOMContentLoaded', () => {
+        const backdrop = document.getElementById('ann-backdrop');
+        const closeBtn = document.getElementById('ann-close');
+        if (!backdrop || !closeBtn) return;
+
+        if (sessionStorage.getItem(dismissKey)) {
+          backdrop.remove();
+          return;
+        }
+
+        setTimeout(() => {
+          backdrop.classList.add('ann--visible');
+        }, 2000);
+
+        function dismiss() {
+          if (!backdrop) return;
+          backdrop.classList.remove('ann--visible');
+          sessionStorage.setItem(dismissKey, 'true');
+          setTimeout(() => backdrop.remove(), 300);
+        }
+
+        closeBtn.addEventListener('click', dismiss);
+
+        backdrop.addEventListener('click', (e) => {
+          if (e.target === backdrop) dismiss();
+        });
+
+        document.addEventListener('keydown', (e) => {
+          if (e.key === 'Escape') dismiss();
+        });
+      });
+    </script>
+  )
+}
+
+<style>
+  .ann-backdrop {
+    position: fixed;
+    inset: 0;
+    z-index: 1000;
+    background: rgba(15, 23, 42, 0.5);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.3s, visibility 0.3s;
+    padding: 1.5rem;
+  }
+
+  .ann--visible {
+    opacity: 1;
+    visibility: visible;
+  }
+
+  .ann-modal {
+    background: var(--color-bg);
+    border-radius: 20px;
+    max-width: 560px;
+    width: 100%;
+    overflow: hidden;
+    position: relative;
+    box-shadow: 0 24px 64px rgba(0, 0, 0, 0.2);
+    transform: translateY(12px) scale(0.97);
+    transition: transform 0.3s ease-out;
+  }
+
+  .ann--visible .ann-modal {
+    transform: translateY(0) scale(1);
+  }
+
+  .ann-header {
+    background: linear-gradient(
+      135deg,
+      var(--jj-slate-900) 0%,
+      var(--jj-slate-800) 50%,
+      var(--jj-slate-700) 100%
+    );
+    padding: 3rem 3rem 2.5rem;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .ann-bubble {
+    position: absolute;
+    border-radius: 50%;
+    background: rgba(245, 200, 66, 0.08);
+  }
+
+  .ann-bubble--1 {
+    width: 180px;
+    height: 180px;
+    top: -40px;
+    right: -40px;
+    animation: ann-float-1 8s ease-in-out infinite;
+  }
+
+  .ann-bubble--2 {
+    width: 120px;
+    height: 120px;
+    bottom: -30px;
+    right: 80px;
+    background: rgba(245, 200, 66, 0.05);
+    animation: ann-float-2 10s ease-in-out infinite;
+  }
+
+  .ann-bubble--3 {
+    width: 80px;
+    height: 80px;
+    top: 40px;
+    right: 160px;
+    background: rgba(245, 200, 66, 0.04);
+    animation: ann-float-3 12s ease-in-out infinite;
+  }
+
+  @keyframes ann-float-1 {
+    0%, 100% { transform: translate(0, 0); }
+    25% { transform: translate(-12px, 8px); }
+    50% { transform: translate(-6px, 16px); }
+    75% { transform: translate(-16px, 6px); }
+  }
+
+  @keyframes ann-float-2 {
+    0%, 100% { transform: translate(0, 0); }
+    25% { transform: translate(10px, -6px); }
+    50% { transform: translate(16px, -12px); }
+    75% { transform: translate(6px, -8px); }
+  }
+
+  @keyframes ann-float-3 {
+    0%, 100% { transform: translate(0, 0); }
+    33% { transform: translate(-8px, -10px); }
+    66% { transform: translate(6px, -6px); }
+  }
+
+  .ann-close {
+    position: absolute;
+    top: 16px;
+    right: 16px;
+    z-index: 2;
+    background: rgba(255, 255, 255, 0.1);
+    border: none;
+    border-radius: 8px;
+    width: 32px;
+    height: 32px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: rgba(255, 255, 255, 0.5);
+    font-size: 14px;
+    cursor: pointer;
+    transition: background 0.15s, color 0.15s;
+  }
+
+  .ann-close:hover {
+    background: rgba(255, 255, 255, 0.2);
+    color: rgba(255, 255, 255, 0.8);
+  }
+
+  .ann-badge {
+    display: inline-block;
+    position: relative;
+    z-index: 1;
+    background: rgba(245, 200, 66, 0.15);
+    color: var(--jj-yellow);
+    font-size: 0.647rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    padding: 5px 12px;
+    border-radius: 6px;
+    margin-bottom: 16px;
+  }
+
+  .ann-title {
+    position: relative;
+    z-index: 1;
+    font-size: 2rem;
+    font-weight: 600;
+    color: #ffffff;
+    line-height: 1.2;
+    letter-spacing: -0.01em;
+    margin: 0 0 12px;
+  }
+
+  .ann-headline {
+    position: relative;
+    z-index: 1;
+    font-size: 0.882rem;
+    line-height: 1.6;
+    color: rgba(255, 255, 255, 0.55);
+    margin: 0;
+    max-width: 400px;
+  }
+
+  .ann-body {
+    padding: 2rem 3rem 2.5rem;
+  }
+
+  .ann-message {
+    font-size: 0.882rem;
+    line-height: 1.7;
+    color: var(--color-text-secondary);
+    margin: 0 0 1.5rem;
+  }
+
+  .ann-actions {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+  }
+
+  .ann-btn-primary {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    background: var(--jj-slate-900);
+    color: #ffffff;
+    padding: 14px 28px;
+    border-radius: 10px;
+    font-size: 0.882rem;
+    font-weight: 600;
+    text-decoration: none;
+    transition: opacity 0.15s;
+  }
+
+  .ann-btn-primary:hover {
+    opacity: 0.85;
+    text-decoration: none;
+  }
+
+  .ann-btn-secondary {
+    font-size: 0.824rem;
+    font-weight: 500;
+    text-decoration: none;
+  }
+
+  @media (max-width: 768px) {
+    .ann-header {
+      padding: 2rem 1.5rem;
+    }
+
+    .ann-title {
+      font-size: 1.5rem;
+    }
+
+    .ann-body {
+      padding: 1.5rem;
+    }
+
+    .ann-actions {
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 12px;
+    }
+  }
+</style>

@@ -1,0 +1,60 @@
+---
+const partners = [
+  { abbr: 'UDA', name: 'Università dell\'Aquila', color: 'var(--jj-slate-100)', fg: 'var(--jj-slate-700)' },
+  { abbr: 'MDU', name: 'Mälardalen University', color: 'var(--jj-slate-100)', fg: 'var(--jj-slate-700)' },
+  { abbr: 'FBK', name: 'Fondazione Bruno Kessler', color: 'var(--jj-slate-100)', fg: 'var(--jj-slate-700)' },
+  { abbr: 'EU', name: 'AIM-PRO (ERASMUS-EDU)', color: 'var(--jj-blue-50)', fg: 'var(--jj-blue-600)' },
+];
+---
+
+<section class="section-lg">
+  <div class="container-wide">
+    <span class="label">Research partners</span>
+    <div class="partners">
+      {
+        partners.map((p) => (
+          <div class="partner">
+            <span
+              class="partner-mark"
+              style={`background:${p.color};color:${p.fg}`}
+              aria-hidden="true"
+            >
+              {p.abbr}
+            </span>
+            <span class="partner-name small">{p.name}</span>
+          </div>
+        ))
+      }
+    </div>
+  </div>
+</section>
+
+<style>
+  .partners {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1.5rem;
+  }
+
+  .partner {
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+  }
+
+  .partner-mark {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 36px;
+    height: 36px;
+    border-radius: 8px;
+    font-weight: 500;
+    font-size: 12px;
+    letter-spacing: 0.5px;
+  }
+
+  .partner-name {
+    color: var(--color-text-secondary);
+  }
+</style>

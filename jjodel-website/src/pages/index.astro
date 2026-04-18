@@ -1,0 +1,137 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Hero from '../components/Hero.astro';
+import Pillars from '../components/Pillars.astro';
+import ActivityFeed from '../components/ActivityFeed.astro';
+import Partners from '../components/Partners.astro';
+
+const feedItems = [
+  { type: 'paper', title: 'Modeling in Jjodel: towards bridging complexity and usability in MDE', venue: 'SoSyM 2025', url: 'https://doi.org/10.1007/s10270-025-01324-y' },
+  { type: 'keynote', title: 'The Evolutionary Life of Metamodels', venue: 'MODELS 2025', url: 'https://models-and-evolution.github.io/' },
+  { type: 'talk', title: 'Real-Time Rooms for Collaborative Modeling', venue: 'LangDev 2025' },
+  { type: 'project', title: 'Jjodel joins AIM-PRO (ERASMUS-EDU-2025)', venue: 'Oct 2025' },
+  { type: 'keynote', title: 'Transparency of Tools: Beyond Usability in Modeling Tools', venue: 'MODELSWARD 2025', url: 'https://modelsward.scitevents.org/KeynoteSpeakers.aspx?y=2025#3' },
+];
+---
+
+<BaseLayout title="Jjodel — Open-source metamodeling platform" wide>
+  <Hero />
+
+  <section class="screenshot section">
+    <div class="screenshot__box">
+      <p class="screenshot__label">Screenshot or animated demo of Jjodel</p>
+      <p class="screenshot__hint">Metamodel editor + viewpoint + model in one frame</p>
+    </div>
+    <!-- TODO: sostituire con screenshot reale della app -->
+  </section>
+
+  <Pillars />
+  <ActivityFeed items={feedItems} />
+
+  <section class="educators section">
+    <div class="educators__box">
+      <h3 class="educators__title">For educators</h3>
+      <p class="educators__text">
+        Students open a browser and start modeling. No Eclipse, no EMF, no lab setup.
+        Jjodel runs on any device with a browser. Used in MDE courses at Università dell'Aquila,
+        Mälardalen University, and academic tutorials at MODELS and MLE.
+      </p>
+      <a href="https://docs.jjodel.io" class="educators__link">Teaching with Jjodel →</a>
+    </div>
+  </section>
+
+  <Partners />
+
+  <section class="bottom-cta">
+    <h2 class="bottom-cta__title">Ready to try?</h2>
+    <p class="bottom-cta__text">Free, open-source, MIT-licensed. No account required to explore.</p>
+    <div class="bottom-cta__actions">
+      <a href="https://app.jjodel.io" class="btn btn--primary">Open Jjodel →</a>
+      <a href="https://github.com/jjodel-modeling" class="btn btn--secondary" target="_blank" rel="noopener noreferrer">View on GitHub</a>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .screenshot__box {
+    background: var(--color-bg-secondary);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-lg);
+    height: 420px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .screenshot__label {
+    font-size: 0.882rem;
+    color: var(--color-text-secondary);
+    margin-bottom: 4px;
+  }
+
+  .screenshot__hint {
+    font-size: 0.765rem;
+    color: var(--color-text-tertiary);
+  }
+
+  .educators__box {
+    background: var(--color-bg-secondary);
+    border-radius: var(--radius-lg);
+    padding: 2rem;
+  }
+
+  .educators__title {
+    font-size: 1.06rem;
+    font-weight: 500;
+    margin-bottom: 10px;
+  }
+
+  .educators__text {
+    font-size: 0.941rem;
+    line-height: 1.7;
+    color: var(--color-text-secondary);
+    margin-bottom: 14px;
+  }
+
+  .educators__link {
+    font-size: 0.882rem;
+    font-weight: 500;
+  }
+
+  .bottom-cta {
+    text-align: center;
+    padding: 3rem 0;
+    border-top: 1px solid var(--color-border);
+    border-bottom: 1px solid var(--color-border);
+    margin-bottom: 2rem;
+  }
+
+  .bottom-cta__title {
+    font-size: 1.41rem;
+    margin-bottom: 8px;
+  }
+
+  .bottom-cta__text {
+    font-size: 0.941rem;
+    color: var(--color-text-secondary);
+    margin-bottom: 20px;
+  }
+
+  .bottom-cta__actions {
+    display: flex;
+    gap: 12px;
+    justify-content: center;
+  }
+
+  @media (max-width: 768px) {
+    .screenshot__box {
+      height: 240px;
+    }
+
+    .bottom-cta__actions {
+      flex-direction: column;
+      align-items: center;
+    }
+  }
+</style>

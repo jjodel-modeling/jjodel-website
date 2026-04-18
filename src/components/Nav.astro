@@ -1,0 +1,218 @@
+---
+const { pathname } = Astro.url;
+
+type NavLink = {
+  label: string;
+  href: string;
+  external?: boolean;
+  icon?: string;
+  match?: (path: string) => boolean;
+};
+
+const links: NavLink[] = [
+  { label: 'Home', href: '/', match: (p) => p === '/' },
+  { label: 'Research', href: '/research/', match: (p) => p.startsWith('/research') },
+  { label: 'Team', href: '/team/', match: (p) => p.startsWith('/team') },
+  { label: 'Sponsor', href: '/sponsor/', match: (p) => p.startsWith('/sponsor') },
+  { label: 'Teaching', href: '/teaching/', match: (p) => p.startsWith('/teaching') },
+  { label: 'Docs', href: 'https://docs.jjodel.io', external: true },
+  {
+    label: 'GitHub',
+    href: 'https://github.com/jjodel-modeling',
+    external: true,
+    icon: 'bi-github',
+  },
+];
+---
+
+<nav class="nav">
+  <div class="nav-inner">
+    <a href="/" class="nav-brand" aria-label="Jjodel home">
+      <img src="/jjodel-logo.png" alt="Jjodel" class="nav-logo" />
+    </a>
+
+    <button
+      class="nav-toggle"
+      id="nav-toggle"
+      aria-label="Toggle menu"
+      aria-expanded="false"
+      aria-controls="nav-menu"
+    >
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
+
+    <div class="nav-menu" id="nav-menu">
+      <ul class="nav-links">
+        {
+          links.map((link) => {
+            const isActive = link.match ? link.match(pathname) : false;
+            return (
+              <li>
+                <a
+                  href={link.href}
+                  class:list={[isActive && 'active']}
+                  rel={link.external ? 'noopener' : undefined}
+                >
+                  {link.icon && <i class={link.icon} aria-hidden="true" />}
+                  {link.label}
+                  {link.external && !link.icon ? ' ↗' : ''}
+                </a>
+              </li>
+            );
+          })
+        }
+      </ul>
+      <a href="https://app.jjodel.io" class="btn btn-primary nav-cta" rel="noopener">
+        Try Jjodel
+      </a>
+    </div>
+  </div>
+</nav>
+
+<style>
+  .nav {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    background: var(--color-bg);
+    border-bottom: 1px solid var(--color-border);
+  }
+
+  .nav-inner {
+    max-width: 1080px;
+    margin: 0 auto;
+    padding: 0.875rem 2rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+  }
+
+  .nav-brand {
+    display: inline-flex;
+    align-items: center;
+  }
+
+  .nav-brand:hover {
+    text-decoration: none;
+  }
+
+  .nav-logo {
+    display: block;
+    height: 32px;
+    width: auto;
+  }
+
+  .nav-menu {
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+  }
+
+  .nav-links {
+    display: flex;
+    align-items: center;
+    gap: 0.25rem;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+
+  .nav-links a {
+    color: var(--color-text-secondary);
+    font-size: 14px;
+    font-weight: 400;
+    padding: 6px 12px;
+    border-radius: var(--radius-md);
+    transition: color 0.15s, background-color 0.15s;
+  }
+
+  .nav-links a:hover {
+    color: var(--color-text);
+    background-color: var(--color-bg-secondary);
+    text-decoration: none;
+  }
+
+  .nav-links a.active {
+    color: var(--color-text);
+    font-weight: 500;
+    background-color: var(--color-bg-secondary);
+  }
+
+  .nav-links a i {
+    font-size: 16px;
+    vertical-align: -1px;
+    margin-right: 4px;
+  }
+
+  .nav-cta {
+    padding: 9px 18px;
+    font-size: 14px;
+  }
+
+  .nav-toggle {
+    display: none;
+    background: none;
+    border: none;
+    padding: 0.5rem;
+    cursor: pointer;
+    flex-direction: column;
+    gap: 4px;
+  }
+
+  .nav-toggle span {
+    display: block;
+    width: 20px;
+    height: 2px;
+    background: var(--color-text);
+    border-radius: 1px;
+    transition: transform 0.2s ease, opacity 0.2s ease;
+  }
+
+  @media (max-width: 768px) {
+    .nav-toggle {
+      display: flex;
+    }
+
+    .nav-menu {
+      position: absolute;
+      top: 100%;
+      left: 0;
+      right: 0;
+      flex-direction: column;
+      gap: 1rem;
+      padding: 1.25rem;
+      background: var(--color-bg);
+      border-bottom: 1px solid var(--color-border);
+      align-items: stretch;
+      display: none;
+    }
+
+    .nav-menu.open {
+      display: flex;
+    }
+
+    .nav-links {
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 0.75rem;
+    }
+
+    .nav-cta {
+      text-align: center;
+    }
+  }
+</style>
+
+<script>
+  const toggle = document.getElementById('nav-toggle');
+  const menu = document.getElementById('nav-menu');
+  if (toggle && menu) {
+    toggle.addEventListener('click', () => {
+      const isOpen = menu.classList.toggle('open');
+      toggle.setAttribute('aria-expanded', String(isOpen));
+    });
+  }
+</script>

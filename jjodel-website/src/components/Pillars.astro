@@ -1,0 +1,77 @@
+---
+const pillars = [
+  {
+    icon: 'R',
+    iconBg: 'var(--jj-teal-50)',
+    iconColor: 'var(--jj-teal-600)',
+    title: 'Reflective runtime',
+    text: 'Change a rule, see the effect. No regeneration, no recompilation. The JjOM is alive and inspectable at all times.',
+  },
+  {
+    icon: 'C',
+    iconBg: 'var(--jj-blue-50)',
+    iconColor: 'var(--jj-blue-600)',
+    title: 'Cloud-native',
+    text: 'Zero install. Open a browser, sign in, start modeling. Real-time collaboration with shared rooms. JSX templates unify syntax and UI.',
+  },
+  {
+    icon: 'V',
+    iconBg: 'var(--jj-purple-50)',
+    iconColor: 'var(--jj-purple-600)',
+    title: 'Multi-view modeling',
+    text: 'Multiple viewpoints on the same metamodel. Visual, textual, tabular. Layout-sensitive notations where position carries semantics.',
+  },
+];
+---
+
+<section class="pillars section">
+  <div class="pillars__grid">
+    {pillars.map(p => (
+      <div class="card pillars__card">
+        <div class="pillars__icon" style={`background: ${p.iconBg}; color: ${p.iconColor};`}>
+          {p.icon}
+        </div>
+        <h3 class="pillars__title">{p.title}</h3>
+        <p class="pillars__text">{p.text}</p>
+      </div>
+    ))}
+  </div>
+</section>
+
+<style>
+  .pillars__grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 16px;
+  }
+
+  .pillars__icon {
+    width: 40px;
+    height: 40px;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1rem;
+    font-weight: 600;
+    margin-bottom: 14px;
+  }
+
+  .pillars__title {
+    font-size: 1.06rem;
+    font-weight: 500;
+    margin-bottom: 8px;
+  }
+
+  .pillars__text {
+    font-size: 0.882rem;
+    line-height: 1.6;
+    color: var(--color-text-secondary);
+  }
+
+  @media (max-width: 768px) {
+    .pillars__grid {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>
