@@ -34,13 +34,50 @@
       <span class="hero__browser-url">app.jjodel.io</span>
     </div>
     <div class="hero__browser-content">
-      <img
-        src="/jjodel-screenshot.png"
-        alt="Jjodel Megamodel view showing metamodels, models, transformations, and their relationships"
-      />
+      <button class="hero__zoom" type="button" aria-label="Expand screenshot">
+        <img
+          src="/jjodel-screenshot.png"
+          alt="Jjodel Megamodel view showing metamodels, models, transformations, and their relationships"
+        />
+      </button>
     </div>
   </div>
 </section>
+
+<div class="lightbox" id="hero-lightbox" hidden>
+  <button class="lightbox__close" type="button" aria-label="Close">×</button>
+  <img
+    src="/jjodel-screenshot.png"
+    alt="Jjodel Megamodel view showing metamodels, models, transformations, and their relationships"
+  />
+</div>
+
+<script>
+  const trigger = document.querySelector<HTMLButtonElement>('.hero__zoom');
+  const lightbox = document.getElementById('hero-lightbox');
+  const closeBtn = document.querySelector<HTMLButtonElement>('.lightbox__close');
+
+  function open() {
+    if (!lightbox) return;
+    lightbox.hidden = false;
+    document.body.style.overflow = 'hidden';
+  }
+
+  function close() {
+    if (!lightbox) return;
+    lightbox.hidden = true;
+    document.body.style.overflow = '';
+  }
+
+  trigger?.addEventListener('click', open);
+  closeBtn?.addEventListener('click', close);
+  lightbox?.addEventListener('click', (e) => {
+    if (e.target === lightbox) close();
+  });
+  window.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && lightbox && !lightbox.hidden) close();
+  });
+</script>
 
 <style>
   .hero {
@@ -137,10 +174,61 @@
     background: var(--color-bg);
   }
 
-  .hero__browser-content img {
+  .hero__zoom {
+    display: block;
+    width: 100%;
+    padding: 0;
+    border: 0;
+    background: none;
+    cursor: zoom-in;
+  }
+
+  .hero__zoom img {
     width: 100%;
     height: auto;
     display: block;
+  }
+
+  .lightbox {
+    position: fixed;
+    inset: 0;
+    z-index: 1000;
+    background: rgba(0, 0, 0, 0.88);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 2rem;
+    cursor: zoom-out;
+  }
+
+  .lightbox[hidden] {
+    display: none;
+  }
+
+  .lightbox img {
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: contain;
+    border-radius: var(--radius-md);
+    box-shadow: 0 16px 64px rgba(0, 0, 0, 0.4);
+  }
+
+  .lightbox__close {
+    position: absolute;
+    top: 1rem;
+    right: 1.5rem;
+    background: none;
+    border: 0;
+    color: var(--jj-white);
+    font-size: 32px;
+    line-height: 1;
+    cursor: pointer;
+    padding: 0.25rem 0.5rem;
+    opacity: 0.8;
+  }
+
+  .lightbox__close:hover {
+    opacity: 1;
   }
 
   @media (max-width: 768px) {
