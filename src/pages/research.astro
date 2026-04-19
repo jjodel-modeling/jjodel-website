@@ -25,24 +25,6 @@ const foundations = [
   },
 ];
 
-const comparisons = [
-  {
-    title: 'LSP/GLSP vs Jjodel',
-    body: 'LSP/GLSP separates language server from client, requiring protocol roundtrips for every interaction. Jjodel keeps everything in-browser with reactive state propagation. The result: lower latency, simpler architecture, no server to maintain.',
-    url: 'https://docs.jjodel.io/comparisons/vs-lsp-glsp/',
-  },
-  {
-    title: 'EMF vs Jjodel',
-    body: 'EMF generates Java code from metamodels (generative approach). Jjodel interprets metamodels at runtime (reflective approach). This means no compile-deploy cycle, instant feedback, and metamodel changes that propagate immediately to the tool.',
-    url: 'https://docs.jjodel.io/comparisons/vs-emf/',
-  },
-  {
-    title: 'Co-evolution',
-    body: 'When a metamodel changes, existing models and tools must adapt. Jjodel handles this reactively. EMF/Sirius and MetaEdit+ require manual migration or tool regeneration.',
-    url: 'https://docs.jjodel.io/comparisons/co-evolution/',
-  },
-];
-
 const talkTypeLabel: Record<string, string> = {
   talk: 'Talk',
   keynote: 'Keynote',
@@ -163,40 +145,6 @@ const talkTypeLabel: Record<string, string> = {
     font-size: 14px;
     line-height: 1.6;
     color: var(--color-text-secondary);
-  }
-
-  .compare-list {
-    display: flex;
-    flex-direction: column;
-    gap: 1.5rem;
-  }
-
-  .compare-item {
-    padding-bottom: 1.25rem;
-    border-bottom: 1px solid var(--color-border);
-  }
-
-  .compare-item:last-child {
-    border-bottom: none;
-    padding-bottom: 0;
-  }
-
-  .compare-title {
-    margin: 0 0 0.5rem;
-    font-size: 16px;
-    font-weight: 500;
-  }
-
-  .compare-body {
-    margin: 0 0 0.5rem;
-    font-size: 14px;
-    line-height: 1.7;
-    color: var(--color-text-secondary);
-  }
-
-  .compare-link {
-    font-size: 13px;
-    font-weight: 500;
   }
 
   .pub-list {
