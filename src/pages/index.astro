@@ -45,6 +45,22 @@ import Partners from '../components/Partners.astro';
 
   <Partners />
 
+  <section class="section meet-cta">
+    <div class="container-wide meet-inner">
+      <p class="meet-text">
+        Want to learn more about Jjodel for your research or teaching?
+      </p>
+      <a
+        href="https://outlook.office.com/bookwithme/user/c1e3e186811b4b64b2ce57efec391dcd@univaq.it/meetingtype/XSbwjqsEa0Gb99X66RlAwg2?anonymous&ismsaljsauthenabled&ep=mLinkFromTile"
+        class="btn btn-secondary"
+        target="_blank"
+        rel="noopener noreferrer"
+      >
+        Schedule a meeting →
+      </a>
+    </div>
+  </section>
+
   <section class="section-lg bottom-cta">
     <div class="container-wide text-center">
       <h2 class="cta-title">Ready to try?</h2>
@@ -135,4 +151,24 @@ import Partners from '../components/Partners.astro';
     font-size: 15px;
   }
 
+  .meet-inner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1.5rem;
+    flex-wrap: wrap;
+  }
+
+  .meet-text {
+    margin: 0;
+    font-size: 15px;
+    color: var(--color-text-secondary);
+  }
+
+  @media (max-width: 640px) {
+    .meet-inner {
+      flex-direction: column;
+      align-items: flex-start;
+    }
+  }
 </style>

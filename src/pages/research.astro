@@ -6,70 +6,52 @@ const pubs = (await getCollection('publications')).sort(
   (a, b) => b.data.year - a.data.year,
 );
 
-const keynotes = [
-  {
-    title: 'Transparency of Tools: Beyond Usability',
-    speaker: 'Alfonso Pierantonio',
-    venue: 'Keynote, MODELSWARD 2025, Porto',
-    url: 'https://modelsward.scitevents.org/KeynoteSpeakers.aspx?y=2025#3',
-  },
-  {
-    title: 'The Cognitive Science of Modeling Tools',
-    speaker: 'Alfonso Pierantonio',
-    venue: 'Guest Lecture, TU Wien, June 2025',
-    url: 'https://informatics.tuwien.ac.at/news/2876',
-  },
-  {
-    title: 'The Evolutionary Life of Metamodels',
-    speaker: 'Alfonso Pierantonio',
-    venue: 'Keynote, ME Workshop @ MODELS 2025, Canada',
-    url: 'https://models-and-evolution.github.io/',
-  },
-  {
-    title: 'Achieving Better Workbenches in MDE',
-    speaker: 'Alfonso Pierantonio',
-    venue: 'Keynote, MLE 2024',
-    url: null as string | null,
-  },
-];
+const talks = (await getCollection('activity'))
+  .filter((a) => a.data.type === 'talk' || a.data.type === 'keynote')
+  .sort((a, b) => b.data.date.getTime() - a.data.date.getTime());
 
-const conferenceTalks = [
+const foundations = [
   {
-    title: 'Jjodel and Layout-Sensitive Notation',
-    speaker: 'Alfonso Pierantonio',
-    venue: 'LangDev 2025, Amsterdam',
-    url: null as string | null,
+    title: 'Tool Transparency',
+    body: 'The tool should be invisible. You think about your domain, not about configuration, code generation, or IDE setup. In Jjodel, the metamodel is the tool: define it, and the modeling environment exists. No build step, no deployment.',
   },
   {
-    title: 'Real-Time Rooms for Collaborative Modeling',
-    speaker: 'Juri Di Rocco',
-    venue: 'LangDev 2025, Amsterdam',
-    url: null as string | null,
+    title: 'Reactive Metamodeling',
+    body: 'Change your metamodel and the tool updates live. No code regeneration, no redeployment, no restart. This is the core architectural difference from EMF/Sirius, where every metamodel change requires a full rebuild cycle.',
+  },
+  {
+    title: 'Cloud-Native Collaboration',
+    body: 'Jjodel runs in the browser. Zero installation, zero configuration. But it is not just a web app: it supports shared projects and multi-view modeling on the same metamodel, designed for classrooms where 30 students work simultaneously.',
   },
 ];
 
 const comparisons = [
   {
     title: 'LSP/GLSP vs Jjodel',
-    desc: 'Architecture and interaction model differences',
-    url: '#',
+    body: 'LSP/GLSP separates language server from client, requiring protocol roundtrips for every interaction. Jjodel keeps everything in-browser with reactive state propagation. The result: lower latency, simpler architecture, no server to maintain.',
+    url: 'https://docs.jjodel.io/comparisons/vs-lsp-glsp/',
   },
   {
     title: 'EMF vs Jjodel',
-    desc: 'Generative vs reflective metamodeling',
-    url: '#',
+    body: 'EMF generates Java code from metamodels (generative approach). Jjodel interprets metamodels at runtime (reflective approach). This means no compile-deploy cycle, instant feedback, and metamodel changes that propagate immediately to the tool.',
+    url: 'https://docs.jjodel.io/comparisons/vs-emf/',
   },
   {
     title: 'Co-evolution',
-    desc: 'Live evolution across Jjodel, EMF/Sirius, MetaEdit+',
-    url: '#',
+    body: 'When a metamodel changes, existing models and tools must adapt. Jjodel handles this reactively. EMF/Sirius and MetaEdit+ require manual migration or tool regeneration.',
+    url: 'https://docs.jjodel.io/comparisons/co-evolution/',
   },
 ];
+
+const talkTypeLabel: Record<string, string> = {
+  talk: 'Talk',
+  keynote: 'Keynote',
+};
 ---
 
 <BaseLayout
   title="Research | Jjodel"
-  description="Publications, projects, talks, and comparative insights behind the Jjodel metamodeling workbench."
+  description="Foundations, comparisons, and peer-reviewed publications behind the Jjodel metamodeling workbench."
 >
   <section class="section">
     <div class="container">
@@ -83,36 +65,33 @@ const comparisons = [
         Software and Systems Modeling (SoSyM).
       </p>
 
-      <h2 class="mt-xl">Projects</h2>
-      {/* TODO: aggiungere logo EU funding badge */}
-      <article class="card project-card">
-        <h3 class="project-card__title">AIM-PRO</h3>
-        <p class="project-card__tagline">
-          AI Literacy for Multidisciplinary Professional Readiness and Outreach
-        </p>
-        <ul class="project-card__facts">
-          <li>
-            Funded by the European Union (EACEA), Grant Agreement 101245864
-          </li>
-          <li>Duration: 36 months</li>
-          <li>Coordinator: Università degli Studi dell'Aquila</li>
-          <li>Partners: 15 organizations across 10 European countries</li>
-        </ul>
-        <p class="project-card__desc">
-          AIM-PRO develops educational frameworks integrating AI literacy with
-          Model-Driven Engineering. Jjodel serves as a core learning tool in
-          the project, enabling students and educators to work with
-          metamodeling directly in the browser without installation barriers.
-        </p>
-        <a
-          href="https://aim-pro.eu/"
-          class="project-card__link"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Visit project website →
-        </a>
-      </article>
+      <h2 class="mt-xl">Foundations</h2>
+      <div class="grid grid-3 mt-md">
+        {
+          foundations.map((f) => (
+            <article class="card foundation-card">
+              <h3 class="foundation-title">{f.title}</h3>
+              <p class="foundation-body">{f.body}</p>
+            </article>
+          ))
+        }
+      </div>
+
+      <h2 class="mt-xl">How Jjodel compares</h2>
+      <p class="muted">Detailed comparisons are available in the documentation.</p>
+      <div class="compare-list mt-md">
+        {
+          comparisons.map((c) => (
+            <div class="compare-item">
+              <h3 class="compare-title">{c.title}</h3>
+              <p class="compare-body">{c.body}</p>
+              <a href={c.url} class="compare-link" rel="noopener">
+                Read the full comparison on docs.jjodel.io ↗
+              </a>
+            </div>
+          ))
+        }
+      </div>
 
       <h2 class="mt-xl">Publications</h2>
       <ul class="pub-list">
@@ -142,77 +121,37 @@ const comparisons = [
                   </>
                 )}
               </p>
-              {pub.data.description && (
-                <p class="pub-desc">{pub.data.description}</p>
-              )}
+              <p class="pub-desc">{pub.data.abstract}</p>
             </li>
           ))
         }
       </ul>
 
-      <h2 class="mt-xl">Keynotes and invited talks</h2>
-      <div class="keynote-list">
+      <h2 class="mt-xl">Talks and keynotes</h2>
+      <ul class="talk-list">
         {
-          keynotes.map((t) => (
-            <div class="keynote-item">
-              <p class="keynote-title">
-                {t.url ? (
-                  <a href={t.url} rel="noopener">
-                    "{t.title}" ↗
-                  </a>
-                ) : (
-                  <>"{t.title}"</>
-                )}
-              </p>
-              <p class="keynote-meta">
-                {t.speaker} · {t.venue}
-              </p>
-            </div>
-          ))
-        }
-      </div>
-
-      <h3 class="mt-xl conf-heading">Conference talks</h3>
-      <ul class="talks-list">
-        {
-          conferenceTalks.map((t) => (
+          talks.map((t) => (
             <li class="talk-item">
+              <span class="talk-type tertiary">
+                {talkTypeLabel[t.data.type]}
+              </span>
               <span class="talk-title">
-                {t.url ? (
-                  <a href={t.url} rel="noopener">
-                    "{t.title}" ↗
+                {t.data.url ? (
+                  <a href={t.data.url} rel="noopener">
+                    {t.data.title} ↗
                   </a>
                 ) : (
-                  <>"{t.title}"</>
+                  t.data.title
                 )}
               </span>
-              <span class="small muted">
-                {' · '}
-                {t.speaker}, {t.venue}
+              <span class="talk-meta tertiary">
+                {t.data.speaker ? `${t.data.speaker} · ` : ''}
+                {t.data.venue}
               </span>
             </li>
           ))
         }
       </ul>
-
-      <h2 class="mt-xl">How Jjodel compares</h2>
-      <p class="muted">
-        These comparisons explain how Jjodel differs from existing metamodeling
-        frameworks.
-      </p>
-      <div class="grid grid-3 mt-md">
-        {
-          comparisons.map((c) => (
-            <article class="card comp-card">
-              <h3 class="comp-title">{c.title}</h3>
-              <p class="small muted comp-desc">{c.desc}</p>
-              <a href={c.url} class="small" rel="noopener">
-                Read on docs.jjodel.io ↗
-              </a>
-            </article>
-          ))
-        }
-      </div>
     </div>
   </section>
 </BaseLayout>
@@ -223,45 +162,60 @@ const comparisons = [
     line-height: 1.7;
   }
 
-  .project-card {
-    margin-top: 1rem;
+  .foundation-card {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
   }
 
-  .project-card__title {
-    margin: 0 0 0.25rem;
-    font-size: 18px;
-    font-weight: 600;
-  }
-
-  .project-card__tagline {
-    margin: 0 0 1rem;
-    font-size: 15px;
-    color: var(--color-text-secondary);
-    font-style: italic;
-  }
-
-  .project-card__facts {
-    margin: 0 0 1rem;
-    padding-left: 1.25rem;
-    font-size: 14px;
-    color: var(--color-text-secondary);
-    line-height: 1.7;
-  }
-
-  .project-card__desc {
-    margin: 0 0 1rem;
-    font-size: 15px;
-    line-height: 1.7;
-    color: var(--color-text-secondary);
-  }
-
-  .project-card__link {
-    font-size: 14px;
+  .foundation-title {
+    margin: 0;
+    font-size: 16px;
     font-weight: 500;
   }
 
-  .pub-list,
-  .talks-list {
+  .foundation-body {
+    margin: 0;
+    font-size: 14px;
+    line-height: 1.6;
+    color: var(--color-text-secondary);
+  }
+
+  .compare-list {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+  }
+
+  .compare-item {
+    padding-bottom: 1.25rem;
+    border-bottom: 1px solid var(--color-border);
+  }
+
+  .compare-item:last-child {
+    border-bottom: none;
+    padding-bottom: 0;
+  }
+
+  .compare-title {
+    margin: 0 0 0.5rem;
+    font-size: 16px;
+    font-weight: 500;
+  }
+
+  .compare-body {
+    margin: 0 0 0.5rem;
+    font-size: 14px;
+    line-height: 1.7;
+    color: var(--color-text-secondary);
+  }
+
+  .compare-link {
+    font-size: 13px;
+    font-weight: 500;
+  }
+
+  .pub-list {
     list-style: none;
     padding: 0;
     margin: 0;
@@ -309,71 +263,59 @@ const comparisons = [
     line-height: 1.6;
   }
 
-  .keynote-list {
-    display: flex;
-    flex-direction: column;
+  .talk-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
   }
 
-  .keynote-item {
+  .talk-item {
+    display: grid;
+    grid-template-columns: 80px 1fr auto;
+    gap: 1.25rem;
+    align-items: baseline;
     padding: 0.75rem 0;
     border-bottom: 1px solid var(--color-border);
   }
 
-  .keynote-item:last-child {
+  .talk-item:last-child {
     border-bottom: none;
   }
 
-  .keynote-title {
-    margin: 0 0 0.25rem;
-    font-size: 15px;
+  .talk-type {
+    font-size: 12px;
+    text-transform: uppercase;
+    letter-spacing: 1.2px;
     font-weight: 500;
-    color: var(--color-text);
-  }
-
-  .keynote-title a {
-    color: var(--color-text);
-  }
-
-  .keynote-title a:hover {
-    color: var(--jj-blue-600);
-  }
-
-  .keynote-meta {
-    margin: 0;
-    font-size: 13px;
-    color: var(--color-text-tertiary);
-  }
-
-  .conf-heading {
-    font-size: 16px;
-    font-weight: 500;
-    color: var(--color-text-secondary);
-  }
-
-  .talk-item {
-    padding: 0.5rem 0;
-    font-size: 14px;
   }
 
   .talk-title {
+    font-size: 15px;
     color: var(--color-text);
     font-weight: 500;
   }
 
-  .comp-card {
-    display: flex;
-    flex-direction: column;
-    gap: 0.5rem;
+  .talk-title a {
+    color: var(--color-text);
   }
 
-  .comp-title {
-    margin: 0;
-    font-size: 15px;
-    font-weight: 500;
+  .talk-title a:hover {
+    color: var(--jj-blue-600);
   }
 
-  .comp-desc {
-    margin: 0;
-    flex: 1;
+  .talk-meta {
+    text-align: right;
+    font-size: 13px;
+  }
+
+  @media (max-width: 768px) {
+    .talk-item {
+      grid-template-columns: 1fr;
+      gap: 0.25rem;
+    }
+
+    .talk-meta {
+      text-align: left;
+    }
   }
 </style>

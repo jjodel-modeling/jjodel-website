@@ -150,6 +150,23 @@ function initials(name: string): string {
           <a href="#">Read the contributing guide →</a>
         </li>
       </ul>
+
+      <div class="card contact-card mt-xl">
+        <h2 class="contact-title">Get in touch</h2>
+        <p class="contact-text">
+          Interested in using Jjodel in your research group or classroom?
+          Schedule a remote meeting with the team.
+        </p>
+        <a
+          href="https://outlook.office.com/bookwithme/user/c1e3e186811b4b64b2ce57efec391dcd@univaq.it/meetingtype/XSbwjqsEa0Gb99X66RlAwg2?anonymous&ismsaljsauthenabled&ep=mLinkFromTile"
+          class="btn btn-primary contact-btn"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          Schedule a meeting →
+        </a>
+        <p class="contact-poweredby">Powered by Microsoft Bookings</p>
+      </div>
     </div>
   </section>
 </BaseLayout>
@@ -207,5 +224,36 @@ function initials(name: string): string {
   .plain-list li {
     padding: 0.25rem 0;
     font-size: 14px;
+  }
+
+  .contact-card {
+    max-width: 520px;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+    padding: 2rem;
+  }
+
+  .contact-title {
+    margin: 0 0 0.5rem;
+    font-size: 20px;
+    font-weight: 500;
+  }
+
+  .contact-text {
+    margin: 0 0 1.25rem;
+    font-size: 14px;
+    line-height: 1.6;
+    color: var(--color-text-secondary);
+  }
+
+  .contact-btn {
+    margin-bottom: 0.75rem;
+  }
+
+  .contact-poweredby {
+    margin: 0;
+    font-size: 11px;
+    color: var(--color-text-tertiary);
   }
 </style>

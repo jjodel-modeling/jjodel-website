@@ -1,7 +1,7 @@
 ---
 title: "Jjodel joins AIM-PRO (ERASMUS-EDU-2025)"
-date: 2025-10-24
 type: project
+date: 2025-10-24
 venue: "EU Project"
 url: "https://www.jjodel.io/jjodel-in-the-eu-aims-project/"
 ---

@@ -1,7 +1,6 @@
 ---
+import BaseLayout from '../../layouts/BaseLayout.astro';
 import { getCollection } from 'astro:content';
-
-const limit = 6;
 
 const activities = await getCollection('activity');
 const publications = await getCollection('publications');
@@ -29,9 +28,7 @@ const feed: FeedItem[] = [
     date: p.data.date,
     url: p.data.doi ? `https://doi.org/${p.data.doi}` : p.data.fulltext,
   })),
-]
-  .sort((a, b) => b.date.getTime() - a.date.getTime())
-  .slice(0, limit);
+].sort((a, b) => b.date.getTime() - a.date.getTime());
 
 const typeLabel: Record<FeedItem['type'], string> = {
   paper: 'Paper',
@@ -42,53 +39,47 @@ const typeLabel: Record<FeedItem['type'], string> = {
 };
 ---
 
-<section class="section-lg">
-  <div class="container-wide">
-    <div class="feed-head">
-      <h2 class="feed-heading">Latest activity</h2>
-      <p class="feed-subtitle">Talks, publications, and project updates</p>
-    </div>
-    <ul class="feed">
-      {
-        feed.map((item) => (
-          <li class="feed-row">
-            <span class="feed-type tertiary">{typeLabel[item.type]}</span>
-            <span class="feed-title">
-              {item.url ? (
-                <a href={item.url} rel="noopener">
-                  {item.title} ↗
-                </a>
-              ) : (
-                item.title
+<BaseLayout
+  title="Activity | Jjodel"
+  description="Full archive of talks, publications, and project updates from the Jjodel team."
+>
+  <section class="section">
+    <div class="container">
+      <h1>Activity</h1>
+      <p class="muted intro">
+        Talks, publications, and project updates from the Jjodel team.
+      </p>
+
+      <ul class="feed">
+        {
+          feed.map((item) => (
+            <li class="feed-row">
+              <span class="feed-type tertiary">{typeLabel[item.type]}</span>
+              <span class="feed-title">
+                {item.url ? (
+                  <a href={item.url} rel="noopener">
+                    {item.title} ↗
+                  </a>
+                ) : (
+                  item.title
+                )}
+              </span>
+              {item.venue && (
+                <span class="feed-venue tertiary">{item.venue}</span>
               )}
-            </span>
-            {item.venue && (
-              <span class="feed-venue tertiary">{item.venue}</span>
-            )}
-          </li>
-        ))
-      }
-    </ul>
-    <a href="/activity/" class="feed-viewall">View all →</a>
-  </div>
-</section>
+            </li>
+          ))
+        }
+      </ul>
+    </div>
+  </section>
+</BaseLayout>
 
 <style>
-  .feed-head {
+  .intro {
+    max-width: 720px;
+    line-height: 1.7;
     margin-bottom: 2rem;
-  }
-
-  .feed-heading {
-    font-size: 22px;
-    font-weight: 500;
-    color: var(--color-text);
-    margin: 0 0 0.25rem;
-  }
-
-  .feed-subtitle {
-    font-size: 14px;
-    color: var(--color-text-secondary);
-    margin: 0;
   }
 
   .feed {
@@ -134,13 +125,6 @@ const typeLabel: Record<FeedItem['type'], string> = {
     text-align: right;
     white-space: nowrap;
     font-size: 14px;
-  }
-
-  .feed-viewall {
-    display: inline-block;
-    margin-top: 1.25rem;
-    font-size: 14px;
-    font-weight: 500;
   }
 
   @media (max-width: 768px) {

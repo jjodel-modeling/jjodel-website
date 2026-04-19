@@ -1,12 +1,13 @@
 import { defineCollection, z } from 'astro:content';
 
-const news = defineCollection({
+const activity = defineCollection({
   type: 'content',
   schema: z.object({
     title: z.string(),
+    type: z.enum(['talk', 'keynote', 'paper', 'release', 'project']),
     date: z.date(),
-    type: z.enum(['paper', 'talk', 'keynote', 'release', 'project', 'tutorial']),
-    venue: z.string().optional(),
+    venue: z.string(),
+    speaker: z.string().optional(),
     url: z.string().url().optional(),
   }),
 });
@@ -18,12 +19,12 @@ const publications = defineCollection({
     authors: z.string(),
     venue: z.string(),
     year: z.number(),
+    date: z.date(),
     doi: z.string().optional(),
     fulltext: z.string().url().optional(),
-    abstract: z.string().optional(),
-    description: z.string().optional(),
     badge: z.string().optional(),
+    abstract: z.string(),
   }),
 });
 
-export const collections = { news, publications };
+export const collections = { activity, publications };
