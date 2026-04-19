@@ -77,22 +77,6 @@ const talkTypeLabel: Record<string, string> = {
         }
       </div>
 
-      <h2 class="mt-xl">How Jjodel compares</h2>
-      <p class="muted">Detailed comparisons are available in the documentation.</p>
-      <div class="compare-list mt-md">
-        {
-          comparisons.map((c) => (
-            <div class="compare-item">
-              <h3 class="compare-title">{c.title}</h3>
-              <p class="compare-body">{c.body}</p>
-              <a href={c.url} class="compare-link" rel="noopener">
-                Read the full comparison on docs.jjodel.io ↗
-              </a>
-            </div>
-          ))
-        }
-      </div>
-
       <h2 class="mt-xl">Publications</h2>
       <ul class="pub-list">
         {
