@@ -5,7 +5,7 @@ venue: "Software and Systems Modeling (SoSyM)"
 year: 2025
 date: 2025-01-15
 doi: "10.1007/s10270-025-01324-y"
-fulltext: "https://rdcu.be/eMBFz"
-badge: "SoSyM"
-abstract: "The foundational paper on Jjodel's architecture, design rationale, and reflective metamodeling approach. Published in SoSyM."
+fulltext: "https://link.springer.com/article/10.1007/s10270-025-01324-y"
+badge: "SOSYM"
+abstract: "The foundational paper on Jjodel's architecture, design rationale, and reflective metamodeling approach."
 ---
