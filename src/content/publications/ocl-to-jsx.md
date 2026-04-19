@@ -5,5 +5,5 @@ venue: "Intl Workshop on OCL (accepted)"
 year: 2025
 date: 2025-06-01
 fulltext: "https://arxiv.org/abs/2509.17629"
-abstract: "Explores how JSX-based templates in Jjodel replace OCL constraints with a web-native approach."
+abstract: "This paper investigates how JSX-based templates in Jjodel replace OCL constraints with a web-native approach. It shows how modern frontend technologies can express domain constraints declaratively, lowering adoption barriers while preserving the formal rigor of traditional constraint languages."
 ---

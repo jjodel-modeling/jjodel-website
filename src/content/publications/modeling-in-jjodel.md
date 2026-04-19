@@ -7,5 +7,5 @@ date: 2025-01-15
 doi: "10.1007/s10270-025-01324-y"
 fulltext: "https://link.springer.com/article/10.1007/s10270-025-01324-y"
 badge: "SOSYM"
-abstract: "The foundational paper on Jjodel's architecture, design rationale, and reflective metamodeling approach."
+abstract: "This paper presents Jjodel's architecture and reflective metamodeling approach, designed to bridge complexity and usability in model-driven engineering. It details how a layered, web-native design enables both novice and expert modelers to work effectively within the same environment."
 ---

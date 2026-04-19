@@ -7,5 +7,5 @@ date: 2025-01-10
 doi: "10.1007/s10270-024-01218-5"
 fulltext: "https://link.springer.com/article/10.1007/s10270-024-01218-5"
 badge: "SOSYM"
-abstract: "Proposes evaluation criteria for co-evolution support in MDE tools and applies them to Jjodel, EMF/Sirius, and MetaEdit+."
+abstract: "This paper proposes a systematic framework for evaluating how modeling tools handle the co-evolution of languages, tools, and models. It validates the framework through a comparative analysis of Jjodel, EMF/Sirius, and MetaEdit+, revealing trade-offs in change propagation support across platforms."
 ---
