@@ -6,6 +6,10 @@ const pubs = (await getCollection('publications')).sort(
   (a, b) => b.data.date.getTime() - a.data.date.getTime(),
 );
 
+const talks = (await getCollection('activity'))
+  .filter((a) => a.data.type === 'talk' || a.data.type === 'keynote')
+  .sort((a, b) => b.data.date.getTime() - a.data.date.getTime());
+
 const foundations = [
   {
     title: 'Tool Transparency',
@@ -20,11 +24,34 @@ const foundations = [
     body: 'Jjodel runs in the browser. Zero installation, zero configuration. But it is not just a web app: it supports shared projects and multi-view modeling on the same metamodel, designed for classrooms where 30 students work simultaneously.',
   },
 ];
+
+const comparisons = [
+  {
+    title: 'LSP/GLSP vs Jjodel',
+    body: 'LSP/GLSP separates language server from client, requiring protocol roundtrips for every interaction. Jjodel keeps everything in-browser with reactive state propagation. The result: lower latency, simpler architecture, no server to maintain.',
+    url: 'https://docs.jjodel.io/comparisons/vs-lsp-glsp/',
+  },
+  {
+    title: 'EMF vs Jjodel',
+    body: 'EMF generates Java code from metamodels (generative approach). Jjodel interprets metamodels at runtime (reflective approach). This means no compile-deploy cycle, instant feedback, and metamodel changes that propagate immediately to the tool.',
+    url: 'https://docs.jjodel.io/comparisons/vs-emf/',
+  },
+  {
+    title: 'Co-evolution',
+    body: 'When a metamodel changes, existing models and tools must adapt. Jjodel handles this reactively. EMF/Sirius and MetaEdit+ require manual migration or tool regeneration.',
+    url: 'https://docs.jjodel.io/comparisons/co-evolution/',
+  },
+];
+
+const talkTypeLabel: Record<string, string> = {
+  talk: 'Talk',
+  keynote: 'Keynote',
+};
 ---
 
 <BaseLayout
   title="Research | Jjodel"
-  description="Foundations and peer-reviewed publications behind the Jjodel metamodeling workbench."
+  description="Foundations, comparisons, and peer-reviewed publications behind the Jjodel metamodeling workbench."
 >
   <section class="section">
     <div class="container">
@@ -46,6 +73,22 @@ const foundations = [
               <h3 class="foundation-title">{f.title}</h3>
               <p class="foundation-body">{f.body}</p>
             </article>
+          ))
+        }
+      </div>
+
+      <h2 class="mt-xl">How Jjodel compares</h2>
+      <p class="muted">Detailed comparisons are available in the documentation.</p>
+      <div class="compare-list mt-md">
+        {
+          comparisons.map((c) => (
+            <div class="compare-item">
+              <h3 class="compare-title">{c.title}</h3>
+              <p class="compare-body">{c.body}</p>
+              <a href={c.url} class="compare-link" rel="noopener">
+                Read the full comparison on docs.jjodel.io ↗
+              </a>
+            </div>
           ))
         }
       </div>
@@ -83,6 +126,32 @@ const foundations = [
           ))
         }
       </ul>
+
+      <h2 class="mt-xl">Talks and keynotes</h2>
+      <ul class="talk-list">
+        {
+          talks.map((t) => (
+            <li class="talk-item">
+              <span class="talk-type tertiary">
+                {talkTypeLabel[t.data.type]}
+              </span>
+              <span class="talk-title">
+                {t.data.url ? (
+                  <a href={t.data.url} rel="noopener">
+                    {t.data.title} ↗
+                  </a>
+                ) : (
+                  t.data.title
+                )}
+              </span>
+              <span class="talk-meta tertiary">
+                {t.data.speaker ? `${t.data.speaker} · ` : ''}
+                {t.data.venue}
+              </span>
+            </li>
+          ))
+        }
+      </ul>
     </div>
   </section>
 </BaseLayout>
@@ -110,6 +179,40 @@ const foundations = [
     font-size: 14px;
     line-height: 1.6;
     color: var(--color-text-secondary);
+  }
+
+  .compare-list {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+  }
+
+  .compare-item {
+    padding-bottom: 1.25rem;
+    border-bottom: 1px solid var(--color-border);
+  }
+
+  .compare-item:last-child {
+    border-bottom: none;
+    padding-bottom: 0;
+  }
+
+  .compare-title {
+    margin: 0 0 0.5rem;
+    font-size: 16px;
+    font-weight: 500;
+  }
+
+  .compare-body {
+    margin: 0 0 0.5rem;
+    font-size: 14px;
+    line-height: 1.7;
+    color: var(--color-text-secondary);
+  }
+
+  .compare-link {
+    font-size: 13px;
+    font-weight: 500;
   }
 
   .pub-list {
@@ -158,5 +261,61 @@ const foundations = [
     font-size: 13px;
     color: var(--color-text-tertiary);
     line-height: 1.6;
+  }
+
+  .talk-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+
+  .talk-item {
+    display: grid;
+    grid-template-columns: 80px 1fr auto;
+    gap: 1.25rem;
+    align-items: baseline;
+    padding: 0.75rem 0;
+    border-bottom: 1px solid var(--color-border);
+  }
+
+  .talk-item:last-child {
+    border-bottom: none;
+  }
+
+  .talk-type {
+    font-size: 12px;
+    text-transform: uppercase;
+    letter-spacing: 1.2px;
+    font-weight: 500;
+  }
+
+  .talk-title {
+    font-size: 15px;
+    color: var(--color-text);
+    font-weight: 500;
+  }
+
+  .talk-title a {
+    color: var(--color-text);
+  }
+
+  .talk-title a:hover {
+    color: var(--jj-blue-600);
+  }
+
+  .talk-meta {
+    text-align: right;
+    font-size: 13px;
+  }
+
+  @media (max-width: 768px) {
+    .talk-item {
+      grid-template-columns: 1fr;
+      gap: 0.25rem;
+    }
+
+    .talk-meta {
+      text-align: left;
+    }
   }
 </style>

@@ -45,14 +45,14 @@ import Partners from '../components/Partners.astro';
 
   <Partners />
 
-  <section class="section meet-cta">
+  <section class="meet-cta">
     <div class="container-wide meet-inner">
       <p class="meet-text">
         Want to learn more about Jjodel for your research or teaching?
       </p>
       <a
         href="https://outlook.office.com/bookwithme/user/c1e3e186811b4b64b2ce57efec391dcd@univaq.it/meetingtype/XSbwjqsEa0Gb99X66RlAwg2?anonymous&ismsaljsauthenabled&ep=mLinkFromTile"
-        class="btn btn-secondary"
+        class="meet-btn"
         target="_blank"
         rel="noopener noreferrer"
       >
@@ -151,24 +151,39 @@ import Partners from '../components/Partners.astro';
     font-size: 15px;
   }
 
+  .meet-cta {
+    background: var(--jj-slate-800);
+    padding: 48px 32px;
+  }
+
   .meet-inner {
     display: flex;
+    flex-direction: column;
     align-items: center;
-    justify-content: space-between;
+    text-align: center;
     gap: 1.5rem;
-    flex-wrap: wrap;
   }
 
   .meet-text {
     margin: 0;
-    font-size: 15px;
-    color: var(--color-text-secondary);
+    font-size: 18px;
+    font-weight: 500;
+    color: var(--jj-white);
   }
 
-  @media (max-width: 640px) {
-    .meet-inner {
-      flex-direction: column;
-      align-items: flex-start;
-    }
+  .meet-btn {
+    display: inline-block;
+    padding: 12px 24px;
+    border: 1px solid rgba(255, 255, 255, 0.4);
+    border-radius: var(--radius-md);
+    color: var(--jj-white);
+    font-size: 15px;
+    font-weight: 500;
+    transition: background-color 0.15s;
+  }
+
+  .meet-btn:hover {
+    background: rgba(255, 255, 255, 0.1);
+    text-decoration: none;
   }
 </style>

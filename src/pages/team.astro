@@ -150,23 +150,25 @@ function initials(name: string): string {
           <a href="#">Read the contributing guide →</a>
         </li>
       </ul>
+    </div>
+  </section>
 
-      <div class="card contact-card mt-xl">
-        <h2 class="contact-title">Get in touch</h2>
-        <p class="contact-text">
-          Interested in using Jjodel in your research group or classroom?
-          Schedule a remote meeting with the team.
-        </p>
-        <a
-          href="https://outlook.office.com/bookwithme/user/c1e3e186811b4b64b2ce57efec391dcd@univaq.it/meetingtype/XSbwjqsEa0Gb99X66RlAwg2?anonymous&ismsaljsauthenabled&ep=mLinkFromTile"
-          class="btn btn-primary contact-btn"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Schedule a meeting →
-        </a>
-        <p class="contact-poweredby">Powered by Microsoft Bookings</p>
-      </div>
+  <section class="contact-cta">
+    <div class="contact-inner">
+      <h2 class="contact-title">Get in touch</h2>
+      <p class="contact-text">
+        Interested in using Jjodel in your research group or classroom?
+        Schedule a remote meeting with the team.
+      </p>
+      <a
+        href="https://outlook.office.com/bookwithme/user/c1e3e186811b4b64b2ce57efec391dcd@univaq.it/meetingtype/XSbwjqsEa0Gb99X66RlAwg2?anonymous&ismsaljsauthenabled&ep=mLinkFromTile"
+        class="contact-btn"
+        target="_blank"
+        rel="noopener noreferrer"
+      >
+        Schedule a meeting →
+      </a>
+      <p class="contact-poweredby">Powered by Microsoft Bookings</p>
     </div>
   </section>
 </BaseLayout>
@@ -226,34 +228,51 @@ function initials(name: string): string {
     font-size: 14px;
   }
 
-  .contact-card {
-    max-width: 520px;
-    margin-left: auto;
-    margin-right: auto;
+  .contact-cta {
+    background: var(--jj-slate-800);
+    padding: 56px 32px;
+  }
+
+  .contact-inner {
+    max-width: 560px;
+    margin: 0 auto;
     text-align: center;
-    padding: 2rem;
   }
 
   .contact-title {
     margin: 0 0 0.5rem;
     font-size: 20px;
     font-weight: 500;
+    color: var(--jj-white);
   }
 
   .contact-text {
-    margin: 0 0 1.25rem;
+    margin: 0 0 1.5rem;
     font-size: 14px;
     line-height: 1.6;
-    color: var(--color-text-secondary);
+    color: rgba(255, 255, 255, 0.7);
   }
 
   .contact-btn {
+    display: inline-block;
+    padding: 12px 24px;
+    border: 1px solid rgba(255, 255, 255, 0.4);
+    border-radius: var(--radius-md);
+    color: var(--jj-white);
+    font-size: 15px;
+    font-weight: 500;
     margin-bottom: 0.75rem;
+    transition: background-color 0.15s;
+  }
+
+  .contact-btn:hover {
+    background: rgba(255, 255, 255, 0.1);
+    text-decoration: none;
   }
 
   .contact-poweredby {
     margin: 0;
     font-size: 11px;
-    color: var(--color-text-tertiary);
+    color: rgba(255, 255, 255, 0.4);
   }
 </style>
