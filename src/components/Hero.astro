@@ -51,17 +51,21 @@
       src="/jjodel-screenshot.png"
       alt="Jjodel Megamodel view showing metamodels, models, transformations, and their relationships"
     />
-    <button type="button" class="hotspot hotspot--toolbar" aria-label="Toolbar">
-      <span class="hotspot__tip">Switch views, apply transformations, manage your project</span>
+    <button type="button" class="hotspot hotspot--metamodel">
+      <span class="hotspot__label">Metamodel</span>
+      <span class="hotspot__tip">Define your domain structure — classes, attributes, and references. The metamodel is the foundation: everything else derives from it.</span>
     </button>
-    <button type="button" class="hotspot hotspot--metamodel" aria-label="Metamodel panel">
-      <span class="hotspot__tip">Define your metamodel with classes, attributes, and references</span>
+    <button type="button" class="hotspot hotspot--sources">
+      <span class="hotspot__label">Source Models</span>
+      <span class="hotspot__tip">Create model instances that conform to your metamodel. Edit them visually and see validation in real time.</span>
     </button>
-    <button type="button" class="hotspot hotspot--canvas" aria-label="Canvas">
-      <span class="hotspot__tip">Visual editor — drag, connect, and model in real time</span>
+    <button type="button" class="hotspot hotspot--transformations">
+      <span class="hotspot__label">Transformations</span>
+      <span class="hotspot__tip">Write model transformations in JjTL. Define rules and mappings to transform source models into target models automatically.</span>
     </button>
-    <button type="button" class="hotspot hotspot--inspector" aria-label="Inspector panel">
-      <span class="hotspot__tip">Inspect and edit element properties</span>
+    <button type="button" class="hotspot hotspot--generated">
+      <span class="hotspot__label">Generated Models</span>
+      <span class="hotspot__tip">Models produced by executing transformations. Fully traceable back to their source models and transformation rules.</span>
     </button>
   </div>
 </div>
@@ -238,60 +242,61 @@
   .hotspot {
     position: absolute;
     padding: 0;
-    border: 1px solid rgba(255, 255, 255, 0);
-    background: transparent;
+    border: 1px solid rgba(255, 255, 255, 0.35);
+    background: rgba(255, 255, 255, 0.06);
     border-radius: var(--radius-md);
     cursor: pointer;
-    animation: hotspot-pulse 2.4s ease-in-out infinite;
     transition: border-color 0.2s, background-color 0.2s;
   }
 
   .hotspot:hover,
   .hotspot:focus-visible {
-    border-color: rgba(255, 255, 255, 0.7);
-    background: rgba(255, 255, 255, 0.06);
-    animation: none;
+    border-color: rgba(255, 255, 255, 0.8);
+    background: rgba(255, 255, 255, 0.14);
     outline: none;
   }
 
-  .hotspot--toolbar {
-    left: 3%;
-    top: 2%;
-    width: 94%;
-    height: 10%;
+  .hotspot__label {
+    position: absolute;
+    top: 8px;
+    left: 8px;
+    background: rgba(15, 23, 42, 0.82);
+    color: var(--jj-white);
+    padding: 3px 8px;
+    border-radius: 4px;
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+    line-height: 1.3;
   }
 
   .hotspot--metamodel {
-    left: 3%;
-    top: 14%;
-    width: 26%;
-    height: 72%;
+    left: 2%;
+    top: 1%;
+    width: 24%;
+    height: 28%;
   }
 
-  .hotspot--canvas {
-    left: 32%;
-    top: 14%;
-    width: 35%;
-    height: 72%;
+  .hotspot--sources {
+    left: 1%;
+    top: 55%;
+    width: 21%;
+    height: 40%;
   }
 
-  .hotspot--inspector {
-    left: 70%;
-    top: 14%;
-    width: 27%;
-    height: 72%;
+  .hotspot--transformations {
+    left: 29%;
+    top: 1%;
+    width: 38%;
+    height: 62%;
   }
 
-  @keyframes hotspot-pulse {
-    0%,
-    100% {
-      border-color: rgba(255, 255, 255, 0);
-      box-shadow: 0 0 0 0 rgba(255, 255, 255, 0);
-    }
-    50% {
-      border-color: rgba(255, 255, 255, 0.35);
-      box-shadow: 0 0 0 4px rgba(255, 255, 255, 0.08);
-    }
+  .hotspot--generated {
+    left: 65%;
+    top: 38%;
+    width: 34%;
+    height: 60%;
   }
 
   .hotspot__tip {
