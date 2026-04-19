@@ -46,10 +46,24 @@
 
 <div class="lightbox" id="hero-lightbox" hidden>
   <button class="lightbox__close" type="button" aria-label="Close">×</button>
-  <img
-    src="/jjodel-screenshot.png"
-    alt="Jjodel Megamodel view showing metamodels, models, transformations, and their relationships"
-  />
+  <div class="lightbox__wrap">
+    <img
+      src="/jjodel-screenshot.png"
+      alt="Jjodel Megamodel view showing metamodels, models, transformations, and their relationships"
+    />
+    <button type="button" class="hotspot hotspot--toolbar" aria-label="Toolbar">
+      <span class="hotspot__tip">Switch views, apply transformations, manage your project</span>
+    </button>
+    <button type="button" class="hotspot hotspot--metamodel" aria-label="Metamodel panel">
+      <span class="hotspot__tip">Define your metamodel with classes, attributes, and references</span>
+    </button>
+    <button type="button" class="hotspot hotspot--canvas" aria-label="Canvas">
+      <span class="hotspot__tip">Visual editor — drag, connect, and model in real time</span>
+    </button>
+    <button type="button" class="hotspot hotspot--inspector" aria-label="Inspector panel">
+      <span class="hotspot__tip">Inspect and edit element properties</span>
+    </button>
+  </div>
 </div>
 
 <script>
@@ -205,12 +219,104 @@
     display: none;
   }
 
-  .lightbox img {
-    max-width: 100%;
-    max-height: 100%;
-    object-fit: contain;
+  .lightbox__wrap {
+    position: relative;
+    display: inline-block;
+    line-height: 0;
+  }
+
+  .lightbox__wrap img {
+    display: block;
+    max-width: calc(100vw - 4rem);
+    max-height: calc(100vh - 4rem);
+    width: auto;
+    height: auto;
     border-radius: var(--radius-md);
     box-shadow: 0 16px 64px rgba(0, 0, 0, 0.4);
+  }
+
+  .hotspot {
+    position: absolute;
+    padding: 0;
+    border: 1px solid rgba(255, 255, 255, 0);
+    background: transparent;
+    border-radius: var(--radius-md);
+    cursor: pointer;
+    animation: hotspot-pulse 2.4s ease-in-out infinite;
+    transition: border-color 0.2s, background-color 0.2s;
+  }
+
+  .hotspot:hover,
+  .hotspot:focus-visible {
+    border-color: rgba(255, 255, 255, 0.7);
+    background: rgba(255, 255, 255, 0.06);
+    animation: none;
+    outline: none;
+  }
+
+  .hotspot--toolbar {
+    left: 3%;
+    top: 2%;
+    width: 94%;
+    height: 10%;
+  }
+
+  .hotspot--metamodel {
+    left: 3%;
+    top: 14%;
+    width: 26%;
+    height: 72%;
+  }
+
+  .hotspot--canvas {
+    left: 32%;
+    top: 14%;
+    width: 35%;
+    height: 72%;
+  }
+
+  .hotspot--inspector {
+    left: 70%;
+    top: 14%;
+    width: 27%;
+    height: 72%;
+  }
+
+  @keyframes hotspot-pulse {
+    0%,
+    100% {
+      border-color: rgba(255, 255, 255, 0);
+      box-shadow: 0 0 0 0 rgba(255, 255, 255, 0);
+    }
+    50% {
+      border-color: rgba(255, 255, 255, 0.35);
+      box-shadow: 0 0 0 4px rgba(255, 255, 255, 0.08);
+    }
+  }
+
+  .hotspot__tip {
+    position: absolute;
+    top: calc(100% + 8px);
+    left: 50%;
+    transform: translateX(-50%);
+    background: rgba(15, 23, 42, 0.95);
+    color: var(--jj-white);
+    padding: 8px 12px;
+    border-radius: 6px;
+    font-size: 13px;
+    line-height: 1.4;
+    width: max-content;
+    max-width: min(280px, 90vw);
+    text-align: center;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.2s;
+    z-index: 10;
+  }
+
+  .hotspot:hover .hotspot__tip,
+  .hotspot:focus-visible .hotspot__tip {
+    opacity: 1;
   }
 
   .lightbox__close {
