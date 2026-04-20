@@ -3,7 +3,7 @@ import { getCollection } from 'astro:content';
 
 const limit = 6;
 
-const activities = await getCollection('activity');
+const activities = await getCollection('activity', ({ data }) => !data.draft);
 const publications = await getCollection('publications');
 
 type FeedItem = {

@@ -2,7 +2,7 @@
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import { getCollection } from 'astro:content';
 
-const activities = await getCollection('activity');
+const activities = await getCollection('activity', ({ data }) => !data.draft);
 const publications = await getCollection('publications');
 
 type FeedItem = {

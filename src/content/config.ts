@@ -9,6 +9,7 @@ const activity = defineCollection({
     venue: z.string(),
     speaker: z.string().optional(),
     url: z.string().url().optional(),
+    draft: z.boolean().optional().default(false),
   }),
 });
 
