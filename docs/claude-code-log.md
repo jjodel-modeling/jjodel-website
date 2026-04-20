@@ -11,3 +11,9 @@
 **File toccati**: src/components/TryJjodelButton.astro, src/components/Nav.astro, src/components/Hero.astro, src/pages/index.astro
 **Esito**: ✅ completato
 **Nome del documento prompt**: 2026-04-20 11:30
+
+## 2026-04-20 — docs: add FAME 2026 activity entry
+**Prompt**: add FAME 2026 summer school talk ("Beyond the Proof of Concept") by Alfonso Pierantonio, Malaga 30 Sep - 2 Oct 2026
+**File toccati**: src/content/activity/fame-2026-beyond-proof-of-concept.md
+**Esito**: ✅ completato (note: schema non ha campi `event`/`location` distinti, nome evento + sede combinati in `venue`; enum `type` non include `lecture`, fallback a `talk` come da istruzione del prompt)
+**Nome del documento prompt**: 2026-04-20 12:55
