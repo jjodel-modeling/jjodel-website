@@ -1,4 +1,6 @@
 ---
+import TryJjodelButton from './TryJjodelButton.astro';
+
 const { pathname } = Astro.url;
 
 type NavLink = {
@@ -64,9 +66,7 @@ const links: NavLink[] = [
           })
         }
       </ul>
-      <a href="https://app.jjodel.io" class="btn btn-primary nav-cta" rel="noopener">
-        Try Jjodel
-      </a>
+      <TryJjodelButton label="Try Jjodel" variant="primary" size="sm" />
     </div>
   </div>
 </nav>

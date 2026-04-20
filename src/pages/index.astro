@@ -5,6 +5,7 @@ import Hero from '../components/Hero.astro';
 import Pillars from '../components/Pillars.astro';
 import ActivityFeed from '../components/ActivityFeed.astro';
 import Partners from '../components/Partners.astro';
+import TryJjodelButton from '../components/TryJjodelButton.astro';
 ---
 
 <BaseLayout
@@ -68,9 +69,7 @@ import Partners from '../components/Partners.astro';
         Free, open-source, MIT-licensed. No account required to explore.
       </p>
       <div class="btn-group mt-lg" style="justify-content:center">
-        <a href="https://app.jjodel.io" class="btn btn-primary" rel="noopener">
-          Open Jjodel →
-        </a>
+        <TryJjodelButton label="Open Jjodel" variant="primary" size="lg" />
         <a
           href="https://github.com/jjodel-modeling"
           class="btn btn-secondary"
