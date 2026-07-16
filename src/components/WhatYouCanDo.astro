@@ -1,0 +1,748 @@
+---
+// "What you can do with Jjodel" home section.
+// Six capability blocks in alternating columns: text + visual (SVG diagram or code card).
+// Code snippets are taken verbatim from docs.jjodel.io language pages.
+
+const JJEL_SNIPPET = `-- names of all abstract classes
+forall c in classes such that c.isAbstract : c.name`;
+
+const JJTL_SNIPPET = `transformation StateMachine2PetriNet
+
+from StateMachineMM
+to   PetriNetMM
+
+State -> Place {
+    tokens := if isInitial then 1 else 0
+}`;
+
+const JJSCRIPT_SNIPPET = `create class Person
+create attribute name in Person type EString [1]
+rename class Person to Customer
+validate all`;
+---
+
+<section class="section-lg">
+  <div class="container-wide">
+    <div class="wycd-head">
+      <h2 class="wycd-heading">What you can do with Jjodel</h2>
+      <p class="wycd-subtitle">
+        From metamodel design to scripted automation, in the browser
+      </p>
+    </div>
+
+    <div class="wycd-rows">
+      <!-- 1. Design metamodels -->
+      <div class="wycd-row">
+        <div class="wycd-text">
+          <span
+            class="wycd-icon"
+            style="background:#e0f2fe;color:#0284c7"
+            aria-hidden="true"><i class="bi-diagram-3"></i></span>
+          <h3 class="wycd-title">Design metamodels</h3>
+          <p>
+            Define classes, attributes, references, and enumerations in a
+            visual editor. Every change takes effect immediately: models,
+            editors, and viewpoints stay in sync, with no code generation and
+            no redeploy.
+          </p>
+          <a
+            href="https://docs.jjodel.io/user-guide/metamodel-editor/"
+            class="wycd-link"
+            rel="noopener">Learn more →</a
+          >
+        </div>
+        <div class="wycd-visual">
+          <div class="wycd-panel">
+            <svg viewBox="0 0 440 280" aria-hidden="true">
+              <defs>
+                <marker
+                  id="wycd-arrow-blue"
+                  markerWidth="8"
+                  markerHeight="8"
+                  refX="7"
+                  refY="4"
+                  orient="auto"
+                >
+                  <path d="M0 0 L8 4 L0 8 Z" fill="#0284c7"></path>
+                </marker>
+              </defs>
+              <!-- Person class -->
+              <rect
+                x="30"
+                y="45"
+                width="180"
+                height="120"
+                rx="8"
+                fill="#ffffff"
+                stroke="#cbd5e1"
+                stroke-width="1.5"></rect>
+              <path
+                d="M30 53 a8 8 0 0 1 8 -8 h164 a8 8 0 0 1 8 8 v28 h-180 Z"
+                fill="#e0f2fe"></path>
+              <line
+                x1="30"
+                y1="81"
+                x2="210"
+                y2="81"
+                stroke="#cbd5e1"
+                stroke-width="1.5"></line>
+              <text
+                x="120"
+                y="68"
+                text-anchor="middle"
+                font-family="Inter, system-ui, sans-serif"
+                font-size="13"
+                font-weight="600"
+                fill="#0f172a">Person</text
+              >
+              <text
+                x="44"
+                y="106"
+                font-family="Inter, system-ui, sans-serif"
+                font-size="12"
+                fill="#475569">name : EString</text
+              >
+              <text
+                x="44"
+                y="130"
+                font-family="Inter, system-ui, sans-serif"
+                font-size="12"
+                fill="#475569">age : EInt</text
+              >
+              <!-- Company class -->
+              <rect
+                x="255"
+                y="140"
+                width="160"
+                height="88"
+                rx="8"
+                fill="#ffffff"
+                stroke="#cbd5e1"
+                stroke-width="1.5"></rect>
+              <path
+                d="M255 148 a8 8 0 0 1 8 -8 h144 a8 8 0 0 1 8 8 v24 h-160 Z"
+                fill="#e0f2fe"></path>
+              <line
+                x1="255"
+                y1="172"
+                x2="415"
+                y2="172"
+                stroke="#cbd5e1"
+                stroke-width="1.5"></line>
+              <text
+                x="335"
+                y="161"
+                text-anchor="middle"
+                font-family="Inter, system-ui, sans-serif"
+                font-size="13"
+                font-weight="600"
+                fill="#0f172a">Company</text
+              >
+              <text
+                x="269"
+                y="196"
+                font-family="Inter, system-ui, sans-serif"
+                font-size="12"
+                fill="#475569">name : EString</text
+              >
+              <!-- Reference edge -->
+              <path
+                d="M210 105 H232 V184 H251"
+                fill="none"
+                stroke="#0284c7"
+                stroke-width="1.5"
+                marker-end="url(#wycd-arrow-blue)"></path>
+              <text
+                x="240"
+                y="98"
+                font-family="Inter, system-ui, sans-serif"
+                font-size="11"
+                fill="#64748b">employer 0..1</text
+              >
+            </svg>
+          </div>
+        </div>
+      </div>
+
+      <!-- 2. Craft viewpoints -->
+      <div class="wycd-row">
+        <div class="wycd-text">
+          <span
+            class="wycd-icon"
+            style="background:#ccfbf1;color:#0d9488"
+            aria-hidden="true"><i class="bi-layers"></i></span>
+          <h3 class="wycd-title">Craft viewpoints</h3>
+          <p>
+            A viewpoint defines how model elements look and behave. Combine one
+            syntax viewpoint with overlays for decoration, validation, and
+            simulation, then switch notation on the same model with a click.
+          </p>
+          <a
+            href="https://docs.jjodel.io/user-guide/viewpoints/"
+            class="wycd-link"
+            rel="noopener">Learn more →</a
+          >
+        </div>
+        <div class="wycd-visual">
+          <div class="wycd-panel">
+            <svg viewBox="0 0 440 280" aria-hidden="true">
+              <defs>
+                <marker
+                  id="wycd-arrow-teal"
+                  markerWidth="8"
+                  markerHeight="8"
+                  refX="7"
+                  refY="4"
+                  orient="auto"
+                >
+                  <path d="M0 0 L8 4 L0 8 Z" fill="#0d9488"></path>
+                </marker>
+                <marker
+                  id="wycd-arrow-slate"
+                  markerWidth="8"
+                  markerHeight="8"
+                  refX="7"
+                  refY="4"
+                  orient="auto"
+                >
+                  <path d="M0 0 L8 4 L0 8 Z" fill="#94a3b8"></path>
+                </marker>
+              </defs>
+              <!-- model box -->
+              <rect
+                x="25"
+                y="85"
+                width="120"
+                height="110"
+                rx="8"
+                fill="#ffffff"
+                stroke="#cbd5e1"
+                stroke-width="1.5"></rect>
+              <circle cx="48" cy="112" r="5" fill="#94a3b8"></circle>
+              <rect x="62" y="108" width="60" height="7" rx="3.5" fill="#e2e8f0"
+              ></rect>
+              <circle cx="48" cy="140" r="5" fill="#94a3b8"></circle>
+              <rect x="62" y="136" width="48" height="7" rx="3.5" fill="#e2e8f0"
+              ></rect>
+              <circle cx="48" cy="168" r="5" fill="#94a3b8"></circle>
+              <rect x="62" y="164" width="54" height="7" rx="3.5" fill="#e2e8f0"
+              ></rect>
+              <text
+                x="85"
+                y="215"
+                text-anchor="middle"
+                font-family="Inter, system-ui, sans-serif"
+                font-size="11"
+                fill="#94a3b8">one model</text
+              >
+              <!-- arrows to the two notations -->
+              <path
+                d="M145 115 C175 100 180 90 200 78"
+                fill="none"
+                stroke="#94a3b8"
+                stroke-width="1.5"
+                stroke-dasharray="4 4"
+                marker-end="url(#wycd-arrow-slate)"></path>
+              <path
+                d="M145 165 C175 180 180 190 200 202"
+                fill="none"
+                stroke="#94a3b8"
+                stroke-width="1.5"
+                stroke-dasharray="4 4"
+                marker-end="url(#wycd-arrow-slate)"></path>
+              <!-- notation A: circles -->
+              <rect
+                x="205"
+                y="25"
+                width="210"
+                height="105"
+                rx="8"
+                fill="#ffffff"
+                stroke="#e2e8f0"
+                stroke-width="1.5"></rect>
+              <circle
+                cx="245"
+                cy="77"
+                r="16"
+                fill="#ccfbf1"
+                stroke="#0d9488"
+                stroke-width="1.5"></circle>
+              <circle
+                cx="310"
+                cy="55"
+                r="16"
+                fill="#ccfbf1"
+                stroke="#0d9488"
+                stroke-width="1.5"></circle>
+              <circle
+                cx="375"
+                cy="90"
+                r="16"
+                fill="#ccfbf1"
+                stroke="#0d9488"
+                stroke-width="1.5"></circle>
+              <line
+                x1="260"
+                y1="71"
+                x2="291"
+                y2="61"
+                stroke="#0d9488"
+                stroke-width="1.5"
+                marker-end="url(#wycd-arrow-teal)"></line>
+              <line
+                x1="325"
+                y1="63"
+                x2="357"
+                y2="80"
+                stroke="#0d9488"
+                stroke-width="1.5"
+                marker-end="url(#wycd-arrow-teal)"></line>
+              <!-- notation B: boxes -->
+              <rect
+                x="205"
+                y="150"
+                width="210"
+                height="105"
+                rx="8"
+                fill="#ffffff"
+                stroke="#e2e8f0"
+                stroke-width="1.5"></rect>
+              <rect
+                x="222"
+                y="186"
+                width="52"
+                height="32"
+                rx="6"
+                fill="#ffffff"
+                stroke="#0d9488"
+                stroke-width="1.5"></rect>
+              <rect
+                x="294"
+                y="186"
+                width="52"
+                height="32"
+                rx="6"
+                fill="#ffffff"
+                stroke="#0d9488"
+                stroke-width="1.5"></rect>
+              <rect
+                x="366"
+                y="186"
+                width="34"
+                height="32"
+                rx="6"
+                fill="#ffffff"
+                stroke="#0d9488"
+                stroke-width="1.5"></rect>
+              <line
+                x1="274"
+                y1="202"
+                x2="290"
+                y2="202"
+                stroke="#0d9488"
+                stroke-width="1.5"
+                marker-end="url(#wycd-arrow-teal)"></line>
+              <line
+                x1="346"
+                y1="202"
+                x2="362"
+                y2="202"
+                stroke="#0d9488"
+                stroke-width="1.5"
+                marker-end="url(#wycd-arrow-teal)"></line>
+              <text
+                x="310"
+                y="120"
+                text-anchor="middle"
+                font-family="Inter, system-ui, sans-serif"
+                font-size="11"
+                fill="#94a3b8">notation A</text
+              >
+              <text
+                x="310"
+                y="245"
+                text-anchor="middle"
+                font-family="Inter, system-ui, sans-serif"
+                font-size="11"
+                fill="#94a3b8">notation B</text
+              >
+            </svg>
+          </div>
+        </div>
+      </div>
+
+      <!-- 3. Query with JjEL -->
+      <div class="wycd-row">
+        <div class="wycd-text">
+          <span
+            class="wycd-icon"
+            style="background:#eeedfe;color:#534ab7"
+            aria-hidden="true"><i class="bi-braces"></i></span>
+          <h3 class="wycd-title">Query with JjEL</h3>
+          <p>
+            JjEL is Jjodel's expression language. Use it to query models,
+            compute derived values, and select which elements a view applies
+            to. The same syntax works everywhere: Console, viewpoints,
+            transformations.
+          </p>
+          <a
+            href="https://docs.jjodel.io/languages/jjel/"
+            class="wycd-link"
+            rel="noopener">Learn more →</a
+          >
+        </div>
+        <div class="wycd-visual">
+          <figure class="wycd-code">
+            <figcaption class="wycd-code__bar">
+              <span class="wycd-code__pill" style="color:#534ab7">JjEL</span>
+            </figcaption>
+            <pre class="wycd-code__body"><code>{JJEL_SNIPPET}</code></pre>
+          </figure>
+        </div>
+      </div>
+
+      <!-- 4. Transform with JjTL -->
+      <div class="wycd-row">
+        <div class="wycd-text">
+          <span
+            class="wycd-icon"
+            style="background:#fef3c7;color:#ba7517"
+            aria-hidden="true"><i class="bi-arrow-left-right"></i></span>
+          <h3 class="wycd-title">Transform with JjTL</h3>
+          <p>
+            JjTL maps source classes to target classes with declarative rules.
+            Two-pass execution resolves cross-references regardless of rule
+            order, and every run records full traceability from source to
+            target elements.
+          </p>
+          <a
+            href="https://docs.jjodel.io/languages/jjtl/"
+            class="wycd-link"
+            rel="noopener">Learn more →</a
+          >
+        </div>
+        <div class="wycd-visual">
+          <figure class="wycd-code">
+            <figcaption class="wycd-code__bar">
+              <span class="wycd-code__pill" style="color:#ba7517">JjTL</span>
+            </figcaption>
+            <pre class="wycd-code__body"><code>{JJTL_SNIPPET}</code></pre>
+          </figure>
+        </div>
+      </div>
+
+      <!-- 5. Collaborate in real time -->
+      <div class="wycd-row">
+        <div class="wycd-text">
+          <span
+            class="wycd-icon"
+            style="background:#e0e7ff;color:#4f46e5"
+            aria-hidden="true"><i class="bi-people"></i></span>
+          <h3 class="wycd-title">Collaborate in real time</h3>
+          <p>
+            Share a project and edit the same models simultaneously with
+            colleagues and students. Every action propagates to all
+            participants through a cloud-based publish-subscribe
+            infrastructure. No files to exchange.
+          </p>
+          <a
+            href="https://docs.jjodel.io/faq/#collaboration"
+            class="wycd-link"
+            rel="noopener">Learn more →</a
+          >
+        </div>
+        <div class="wycd-visual">
+          <div class="wycd-panel">
+            <svg viewBox="0 0 440 280" aria-hidden="true">
+              <defs>
+                <marker
+                  id="wycd-arrow-indigo"
+                  markerWidth="8"
+                  markerHeight="8"
+                  refX="7"
+                  refY="4"
+                  orient="auto"
+                >
+                  <path d="M0 0 L8 4 L0 8 Z" fill="#94a3b8"></path>
+                </marker>
+              </defs>
+              <!-- shared canvas -->
+              <rect
+                x="30"
+                y="22"
+                width="380"
+                height="236"
+                rx="10"
+                fill="#ffffff"
+                stroke="#e2e8f0"
+                stroke-width="1.5"></rect>
+              <!-- diagram -->
+              <rect
+                x="70"
+                y="70"
+                width="92"
+                height="44"
+                rx="7"
+                fill="#eef2ff"
+                stroke="#94a3b8"
+                stroke-width="1.5"></rect>
+              <rect
+                x="260"
+                y="58"
+                width="92"
+                height="44"
+                rx="7"
+                fill="#eef2ff"
+                stroke="#94a3b8"
+                stroke-width="1.5"></rect>
+              <rect
+                x="165"
+                y="176"
+                width="92"
+                height="44"
+                rx="7"
+                fill="#eef2ff"
+                stroke="#94a3b8"
+                stroke-width="1.5"></rect>
+              <line
+                x1="162"
+                y1="88"
+                x2="256"
+                y2="82"
+                stroke="#94a3b8"
+                stroke-width="1.5"
+                marker-end="url(#wycd-arrow-indigo)"></line>
+              <line
+                x1="122"
+                y1="114"
+                x2="196"
+                y2="172"
+                stroke="#94a3b8"
+                stroke-width="1.5"
+                marker-end="url(#wycd-arrow-indigo)"></line>
+              <line
+                x1="300"
+                y1="102"
+                x2="234"
+                y2="172"
+                stroke="#94a3b8"
+                stroke-width="1.5"
+                marker-end="url(#wycd-arrow-indigo)"></line>
+              <!-- cursor 1 -->
+              <g transform="translate(196 100)">
+                <path
+                  d="M0 0 L5 14 L7.5 8 L14 5.5 Z"
+                  fill="#4f46e5"
+                  stroke="#ffffff"
+                  stroke-width="1"></path>
+                <rect x="12" y="12" width="38" height="19" rx="9.5" fill="#4f46e5"
+                ></rect>
+                <text
+                  x="31"
+                  y="25"
+                  text-anchor="middle"
+                  font-family="Inter, system-ui, sans-serif"
+                  font-size="11"
+                  fill="#ffffff">Ada</text
+                >
+              </g>
+              <!-- cursor 2 -->
+              <g transform="translate(296 186)">
+                <path
+                  d="M0 0 L5 14 L7.5 8 L14 5.5 Z"
+                  fill="#ba7517"
+                  stroke="#ffffff"
+                  stroke-width="1"></path>
+                <rect x="12" y="12" width="48" height="19" rx="9.5" fill="#ba7517"
+                ></rect>
+                <text
+                  x="36"
+                  y="25"
+                  text-anchor="middle"
+                  font-family="Inter, system-ui, sans-serif"
+                  font-size="11"
+                  fill="#ffffff">Grace</text
+                >
+              </g>
+            </svg>
+          </div>
+        </div>
+      </div>
+
+      <!-- 6. Automate with JjScript -->
+      <div class="wycd-row">
+        <div class="wycd-text">
+          <span
+            class="wycd-icon"
+            style="background:#f1f5f9;color:#334155"
+            aria-hidden="true"><i class="bi-terminal"></i></span>
+          <h3 class="wycd-title">Automate with JjScript</h3>
+          <p>
+            JjScript drives the metamodel editor from the Console. Create,
+            rename, and delete elements with imperative commands, batch-edit
+            with <code>forall</code>, and validate the result before moving
+            on.
+          </p>
+          <a
+            href="https://docs.jjodel.io/languages/jjscript/"
+            class="wycd-link"
+            rel="noopener">Learn more →</a
+          >
+        </div>
+        <div class="wycd-visual">
+          <figure class="wycd-code">
+            <figcaption class="wycd-code__bar">
+              <span class="wycd-code__pill" style="color:#0f6e56"
+                >JjScript</span
+              >
+            </figcaption>
+            <pre class="wycd-code__body"><code>{JJSCRIPT_SNIPPET}</code></pre>
+          </figure>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .wycd-head {
+    margin-bottom: 2.5rem;
+  }
+
+  .wycd-heading {
+    font-size: 22px;
+    font-weight: 500;
+    color: var(--color-text);
+    margin: 0 0 0.25rem;
+  }
+
+  .wycd-subtitle {
+    font-size: 14px;
+    color: var(--color-text-secondary);
+    margin: 0;
+  }
+
+  .wycd-rows {
+    display: flex;
+    flex-direction: column;
+    gap: 3.5rem;
+  }
+
+  .wycd-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 3rem;
+    align-items: center;
+  }
+
+  .wycd-row:nth-child(even) .wycd-text {
+    order: 2;
+  }
+
+  .wycd-row:nth-child(even) .wycd-visual {
+    order: 1;
+  }
+
+  .wycd-icon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    border-radius: 10px;
+    margin-bottom: 0.9rem;
+  }
+
+  .wycd-icon i {
+    font-size: 21px;
+    line-height: 1;
+  }
+
+  .wycd-title {
+    font-size: 18px;
+    font-weight: 500;
+    margin: 0 0 0.6rem;
+  }
+
+  .wycd-text p {
+    font-size: 15px;
+    line-height: 1.7;
+    color: var(--color-text-secondary);
+    margin: 0 0 0.9rem;
+  }
+
+  .wycd-text p code {
+    font-size: 13px;
+    background: var(--color-bg-secondary);
+    border: 1px solid var(--color-border);
+    border-radius: 4px;
+    padding: 1px 5px;
+  }
+
+  .wycd-link {
+    font-size: 14px;
+    font-weight: 500;
+  }
+
+  .wycd-panel {
+    background: var(--color-bg-secondary);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-lg);
+    padding: 1.25rem;
+  }
+
+  .wycd-panel svg {
+    display: block;
+    width: 100%;
+    height: auto;
+  }
+
+  .wycd-code {
+    margin: 0;
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+    background: var(--color-bg);
+  }
+
+  .wycd-code__bar {
+    padding: 8px 16px;
+    background: var(--color-bg-secondary);
+    border-bottom: 1px solid var(--color-border);
+  }
+
+  .wycd-code__pill {
+    font-size: 11px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.8px;
+  }
+
+  .wycd-code__body {
+    margin: 0;
+    padding: 16px 18px;
+    font-size: 13px;
+    line-height: 1.65;
+    color: var(--jj-slate-700);
+    overflow-x: auto;
+  }
+
+  @media (max-width: 768px) {
+    .wycd-rows {
+      gap: 2.5rem;
+    }
+
+    .wycd-row {
+      grid-template-columns: 1fr;
+      gap: 1.25rem;
+    }
+
+    .wycd-row:nth-child(even) .wycd-text {
+      order: 0;
+    }
+
+    .wycd-row:nth-child(even) .wycd-visual {
+      order: 0;
+    }
+  }
+</style>
