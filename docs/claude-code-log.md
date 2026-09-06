@@ -1,5 +1,11 @@
 # Claude Code log
 
+## 2026-09-06 — docs: attività MODELS 2026 e LangDev 2026 nel feed
+**Prompt**: due entry nel feed attività: demo Jjodie a MODELS 2026 (7 ottobre) e talk "Domain Knowledge Debt in Metamodeling" a LangDev 2026 (8 ottobre), entrambi di Alfonso Pierantonio a Málaga
+**File toccati**: src/content/activity/models-2026-jjodie-demo.md (nuovo), src/content/activity/langdev-2026-domain-knowledge-debt.md (nuovo), docs/claude-code-log.md
+**Esito**: ✅ completato su `main` (commit unico); copy dei due file usata alla lettera, tutti i campi accettati dallo schema di config.ts senza adattamenti; build verde, `grep -c "—"` = 0 su dist/index.html, dist/activity/index.html, dist/research/index.html; le due entry sono in testa al feed della home, sopra FAME 2026; nessun push
+**Nome del documento prompt**: 2026-09-06 17:07
+
 ## 2026-09-06 — feat: conto alla rovescia del rilascio 3.0 sulla home
 **Prompt**: countdown in giorni verso il 15 settembre 2026, in due punti: badge del modale annuncio e striscia dismissibile in testa alla home
 **File toccati**: src/lib/release.ts (nuovo), src/components/Announcement.astro, src/components/ReleaseBanner.astro (nuovo), src/pages/index.astro, docs/claude-code-log.md
