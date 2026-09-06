@@ -1,5 +1,11 @@
 # Claude Code log
 
+## 2026-09-06 — feat: conto alla rovescia del rilascio 3.0 sulla home
+**Prompt**: countdown in giorni verso il 15 settembre 2026, in due punti: badge del modale annuncio e striscia dismissibile in testa alla home
+**File toccati**: src/lib/release.ts (nuovo), src/components/Announcement.astro, src/components/ReleaseBanner.astro (nuovo), src/pages/index.astro, docs/claude-code-log.md
+**Esito**: ✅ completato (tre commit: helper `155c664`, badge `0d23e01`, striscia `fa2a3b2`; build verde, `grep -c "—" dist/index.html` = 0; test di `daysToRelease`: 2026-09-06T23:30Z → 9, 2026-09-14T00:10Z → 1, 2026-09-15T12:00Z → 0, 2026-09-16T00:00Z → -1; la striscia è montata solo su index.astro, assente dalle altre 7 pagine di dist; nessun push)
+**Nome del documento prompt**: 2026-09-06 14:12
+
 ## 2026-09-06 — feat: annuncio data di rilascio 3.0 e pulizia repo
 **Prompt**: stato pre-rilascio Jjodel 3.0 (15 settembre 2026): modale annuncio con data, pagina /whats-new/ allineata alla What's New dei docs (nove novità), rimozione scaffold annidato
 **File toccati**: src/components/Announcement.astro, src/pages/whats-new.astro, jjodel-website/ (rimossa, 22 file), docs/claude-code-log.md
