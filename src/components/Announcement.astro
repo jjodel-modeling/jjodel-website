@@ -1,17 +1,15 @@
 ---
-import { RELEASE_DATE_ISO } from '../lib/release';
-
 const announcement = {
   enabled: true,
-  badge: 'Release date',
+  badge: 'Out now',
   title: 'Jjodel 3.0',
   headline:
-    'Coming on 15 September 2026. A completely redesigned metamodeling experience with a new transformation engine, a new expression language and a new UI.',
+    'Released on 15 September 2026. A completely redesigned metamodeling experience with a new transformation engine, a new expression language and a new UI.',
   message:
-    'The beta is open until the release. Try it now and help us shape Jjodel 3.0.',
-  primaryAction: { label: 'Try the beta →', url: 'https://beta.jjodel.io' },
+    'Jjodel 3.0 is live at app.jjodel.io. The previous version stays available at old.jjodel.io for a few months.',
+  primaryAction: { label: 'Open Jjodel 3.0 →', url: 'https://app.jjodel.io' },
   secondaryAction: { label: "Learn what's new", url: '/whats-new/' },
-  dismissKey: 'announcement-v2',
+  dismissKey: 'announcement-v3',
 };
 ---
 
@@ -68,20 +66,8 @@ const announcement = {
 
 {
   announcement.enabled && (
-    <script define:vars={{ dismissKey: announcement.dismissKey, releaseIso: RELEASE_DATE_ISO }}>
+    <script define:vars={{ dismissKey: announcement.dismissKey }}>
       document.addEventListener('DOMContentLoaded', () => {
-        // Countdown logic mirrors countdownLabel in src/lib/release.ts (inline scripts cannot import modules).
-        const badge = document.getElementById('ann-badge');
-        if (badge) {
-          const [y, m, d] = releaseIso.split('-').map(Number);
-          const release = Date.UTC(y, m - 1, d);
-          const now = new Date();
-          const today = Date.UTC(now.getUTCFullYear(), now.getUTCMonth(), now.getUTCDate());
-          const days = Math.round((release - today) / 86400000);
-          badge.textContent =
-            days > 1 ? `${days} days to go` : days === 1 ? 'Tomorrow' : days === 0 ? 'Today' : 'Out now';
-        }
-
         const backdrop = document.getElementById('ann-backdrop');
         const closeBtn = document.getElementById('ann-close');
         if (!backdrop || !closeBtn) return;

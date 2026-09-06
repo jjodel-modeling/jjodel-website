@@ -12,7 +12,7 @@ const {
 } = Astro.props;
 
 const APP_URL = 'https://app.jjodel.io';
-const BETA_URL = 'https://beta.jjodel.io';
+const OLD_URL = 'https://old.jjodel.io';
 ---
 
 <div
@@ -60,16 +60,16 @@ const BETA_URL = 'https://beta.jjodel.io';
       target="_blank"
       rel="noopener"
     >
-      Current version
+      Jjodel 3.0
     </a>
     <a
       class="try-jjodel-button__item"
-      href={BETA_URL}
+      href={OLD_URL}
       role="menuitem"
       target="_blank"
       rel="noopener"
     >
-      Beta (3.0)
+      Previous version (2.x)
     </a>
   </div>
 </div>

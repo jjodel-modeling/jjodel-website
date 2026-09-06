@@ -8,7 +8,7 @@ const dismissKey = 'release-banner-v1';
   <div class="release-banner__inner">
     <p class="release-banner__text">
       <strong>Jjodel 3.0</strong> arrives on {RELEASE_DATE_LABEL}<span id="release-banner-count"></span>.
-      <a href="https://beta.jjodel.io" rel="noopener">Try the beta →</a>
+      <a href="https://app.jjodel.io" rel="noopener">Open Jjodel 3.0 →</a>
     </p>
     <button class="release-banner__close" id="release-banner-close" type="button" aria-label="Dismiss">
       <i class="bi bi-x-lg" aria-hidden="true"></i>
@@ -36,7 +36,7 @@ const dismissKey = 'release-banner-v1';
     else if (days === 0) count.textContent = ', today';
     else {
       const text = banner.querySelector('.release-banner__text');
-      if (text) text.innerHTML = '<strong>Jjodel 3.0</strong> is out. <a href="https://beta.jjodel.io" rel="noopener">Open Jjodel →</a>';
+      if (text) text.innerHTML = '<strong>Jjodel 3.0</strong> is out. <a href="https://app.jjodel.io" rel="noopener">Open Jjodel →</a>';
     }
     close.addEventListener('click', () => {
       try { sessionStorage.setItem(dismissKey, 'true'); } catch {}
