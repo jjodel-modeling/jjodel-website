@@ -1,5 +1,11 @@
 # Claude Code log
 
+## 2026-09-06 — feat: badge "Upcoming" sugli eventi futuri
+**Prompt**: badge Upcoming sulle attività con data futura, reso in build e ripulito lato client quando la data passa senza un nuovo build
+**File toccati**: src/components/UpcomingBadge.astro (nuovo), src/components/ActivityFeed.astro, src/pages/activity/index.astro, src/pages/research.astro, docs/claude-code-log.md
+**Esito**: ✅ completato su `main` (tre commit: componente `43af29c`, wiring, log); build verde; `data-date` in dist limitato a 2026-09-30, 2026-10-07, 2026-10-08 su tutte e tre le pagine, nessuna data del 2025 o precedente; `grep -c "—"` = 0 su dist/index.html, dist/activity/index.html, dist/research/index.html; nessun push
+**Nome del documento prompt**: 2026-09-06 17:25
+
 ## 2026-09-06 — docs: attività MODELS 2026 e LangDev 2026 nel feed
 **Prompt**: due entry nel feed attività: demo Jjodie a MODELS 2026 (7 ottobre) e talk "Domain Knowledge Debt in Metamodeling" a LangDev 2026 (8 ottobre), entrambi di Alfonso Pierantonio a Málaga
 **File toccati**: src/content/activity/models-2026-jjodie-demo.md (nuovo), src/content/activity/langdev-2026-domain-knowledge-debt.md (nuovo), docs/claude-code-log.md
