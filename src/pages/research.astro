@@ -1,6 +1,7 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
 import { getCollection } from 'astro:content';
+import UpcomingBadge from '../components/UpcomingBadge.astro';
 
 const pubs = (await getCollection('publications')).sort(
   (a, b) => b.data.date.getTime() - a.data.date.getTime(),
@@ -109,6 +110,7 @@ const talkTypeLabel: Record<string, string> = {
                 ) : (
                   t.data.title
                 )}
+                <UpcomingBadge date={t.data.date} />
               </span>
               <span class="talk-meta tertiary">
                 {t.data.speaker ? `${t.data.speaker} · ` : ''}
