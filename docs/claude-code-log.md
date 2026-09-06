@@ -1,5 +1,17 @@
 # Claude Code log
 
+## 2026-09-06 — feat: annuncio data di rilascio 3.0 e pulizia repo
+**Prompt**: stato pre-rilascio Jjodel 3.0 (15 settembre 2026): modale annuncio con data, pagina /whats-new/ allineata alla What's New dei docs (nove novità), rimozione scaffold annidato
+**File toccati**: src/components/Announcement.astro, src/pages/whats-new.astro, jjodel-website/ (rimossa, 22 file), docs/claude-code-log.md
+**Esito**: ✅ completato (tre commit: annuncio, rimozione scaffold, log; build verde, zero trattini lunghi in dist/whats-new/index.html e dist/index.html; nessun push)
+**Nome del documento prompt**: 2026-09-06 13:46
+
+## 2026-07-16 — nota: commit senza entry di log
+**Prompt**: (nessun prompt registrato)
+**File toccati**: —
+**Esito**: ⚠️ i commit `f26701d` (workflow updated) e `83a0d01` (feat: add What you can do with Jjodel section to home page) sono stati fatti senza la corrispondente entry di log
+**Nome del documento prompt**: —
+
 ## 2026-04-20 — docs: hide LangDev talk from activity feed
 **Prompt**: hide "Real-Time Rooms for Collaborative Modeling" from home feed via draft: true
 **File toccati**: src/content/config.ts, src/content/activity/langdev-2025-rooms.md, src/components/ActivityFeed.astro, src/pages/activity/index.astro
