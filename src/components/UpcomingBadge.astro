@@ -1,0 +1,46 @@
+---
+interface Props {
+  date: Date;
+}
+
+const { date } = Astro.props;
+
+// Calendar-day comparison in UTC; the client script re-checks at load time.
+const now = new Date();
+const todayUtc = Date.UTC(now.getUTCFullYear(), now.getUTCMonth(), now.getUTCDate());
+const dateUtc = Date.UTC(date.getUTCFullYear(), date.getUTCMonth(), date.getUTCDate());
+const isUpcoming = dateUtc >= todayUtc;
+const iso = date.toISOString().slice(0, 10);
+---
+
+{isUpcoming && <span class="upcoming-badge" data-date={iso}>Upcoming</span>}
+
+<script>
+  // Removes badges whose date has passed since the site was last built.
+  document.addEventListener('DOMContentLoaded', () => {
+    const now = new Date();
+    const today = Date.UTC(now.getUTCFullYear(), now.getUTCMonth(), now.getUTCDate());
+    document.querySelectorAll<HTMLElement>('.upcoming-badge[data-date]').forEach((el) => {
+      const [y, m, d] = (el.dataset.date ?? '').split('-').map(Number);
+      if (!y || !m || !d) return;
+      if (Date.UTC(y, m - 1, d) < today) el.remove();
+    });
+  });
+</script>
+
+<style>
+  .upcoming-badge {
+    display: inline-block;
+    margin-left: 8px;
+    padding: 1px 7px;
+    border-radius: 999px;
+    background: var(--jj-teal-50);
+    color: var(--jj-teal-600);
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.4px;
+    text-transform: uppercase;
+    vertical-align: middle;
+    white-space: nowrap;
+  }
+</style>
