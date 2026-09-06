@@ -1,4 +1,6 @@
 ---
+import { RELEASE_DATE_ISO } from '../lib/release';
+
 const announcement = {
   enabled: true,
   badge: 'Release date',
@@ -31,7 +33,7 @@ const announcement = {
           </button>
 
           {announcement.badge && (
-            <span class="ann-badge">{announcement.badge}</span>
+            <span class="ann-badge" id="ann-badge">{announcement.badge}</span>
           )}
           <p class="ann-title">{announcement.title}</p>
           <p class="ann-headline">{announcement.headline}</p>
@@ -66,8 +68,20 @@ const announcement = {
 
 {
   announcement.enabled && (
-    <script define:vars={{ dismissKey: announcement.dismissKey }}>
+    <script define:vars={{ dismissKey: announcement.dismissKey, releaseIso: RELEASE_DATE_ISO }}>
       document.addEventListener('DOMContentLoaded', () => {
+        // Countdown logic mirrors countdownLabel in src/lib/release.ts (inline scripts cannot import modules).
+        const badge = document.getElementById('ann-badge');
+        if (badge) {
+          const [y, m, d] = releaseIso.split('-').map(Number);
+          const release = Date.UTC(y, m - 1, d);
+          const now = new Date();
+          const today = Date.UTC(now.getUTCFullYear(), now.getUTCMonth(), now.getUTCDate());
+          const days = Math.round((release - today) / 86400000);
+          badge.textContent =
+            days > 1 ? `${days} days to go` : days === 1 ? 'Tomorrow' : days === 0 ? 'Today' : 'Out now';
+        }
+
         const backdrop = document.getElementById('ann-backdrop');
         const closeBtn = document.getElementById('ann-close');
         if (!backdrop || !closeBtn) return;
