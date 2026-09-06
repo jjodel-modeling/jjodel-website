@@ -1,5 +1,12 @@
 # Claude Code log
 
+## 2026-09-06 — feat: release day di Jjodel 3.0 (preparato in anticipo su branch)
+**Prompt**: commutazione dei sottodomini (3.0 su app.jjodel.io, 2.x su old.jjodel.io, beta.jjodel.io rimosso), modale e What's New al passato, split button riordinato
+**File toccati**: src/components/TryJjodelButton.astro, src/components/Announcement.astro, src/components/ReleaseBanner.astro, src/pages/whats-new.astro, docs/claude-code-log.md
+**Esito**: ✅ completato su branch `release-3-0` (partito da `main` a `5fb4ed6`), due commit: CTA `e45655c`, log; build verde, `grep -c "—"` = 0 su dist/index.html e dist/whats-new/index.html, `grep -rl "beta.jjodel.io" dist` vuoto; badge dinamico del modale rimosso e badge tornato statico "Out now"; sezione screenshot opzionale non eseguita (nessun nuovo screenshot nel GO); nessun push, nessun merge: `main` resta intatto fino al 15 settembre
+**Nota**: eseguito il 6 settembre su deroga esplicita di Alfonso alla clausola "solo il 15 settembre"; i sottodomini non erano ancora commutati, da verificare prima del merge e del push. Il sottotitolo di /whats-new/ dice ancora "Jjodel 3.0 will be released on 15 September 2026" nella prima frase: fuori dallo scope del prompt, da correggere al momento del rilascio.
+**Nome del documento prompt**: 2026-09-06 14:27
+
 ## 2026-09-06 — feat: conto alla rovescia del rilascio 3.0 sulla home
 **Prompt**: countdown in giorni verso il 15 settembre 2026, in due punti: badge del modale annuncio e striscia dismissibile in testa alla home
 **File toccati**: src/lib/release.ts (nuovo), src/components/Announcement.astro, src/components/ReleaseBanner.astro (nuovo), src/pages/index.astro, docs/claude-code-log.md
