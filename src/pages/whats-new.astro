@@ -5,32 +5,47 @@ const features = [
   {
     title: 'JjTL: model-to-model transformations',
     description:
-      'A new transformation language that maps source metamodel elements to target metamodel elements. Two-pass execution: first pass creates instances, second pass resolves attributes and cross-type references via trace. Supports guards with the where keyword.',
+      'Declarative transformation language that maps source metamodel elements to target metamodel elements. Two-pass execution: the first pass creates instances, the second resolves attributes and cross-type references through an automatic trace model. Guards with the where keyword.',
   },
   {
-    title: 'JjEL: three-level expression language',
+    title: 'JjEL: expression language',
     description:
-      'Unified expression language with three abstraction levels. Built-in collections (classes, attributes, references) at L1, context variables (data, node) at L2, and raw JjOM access at L3. No more $ prefix for user features.',
+      'Unified expression language for queries, guards and computed values. Includes forall and exists, context binding, null-safe navigation, type checks and over 100 built-in methods. Available in the Console, in views and in transformations.',
   },
   {
     title: 'JjScript: metamodel manipulation',
     description:
-      'A scripting language for programmatic metamodel operations. 19 commands including forall, let, and eval. Execute sequences of operations on metamodels and models from the Console.',
+      'Imperative language for programmatic metamodel editing: structural commands, bulk edits, forall, let and eval. Run sequences of operations on metamodels and models from the Console.',
+  },
+  {
+    title: 'Data Manager',
+    description:
+      'Work with model data as tables, one per metaclass, with forms to create, edit and delete instances. Includes a containment outline, a one-hop neighborhood diagram on each row and a delete preview showing the cascade and the dangling references.',
+  },
+  {
+    title: 'View Designer and forms',
+    description:
+      'Views are authored declaratively from property panels: Applies to, Structure, Symbol and Form. Instance nodes get headers, attribute compartments, accent bars and a library of value renderers (swatches, chips, reference pills, booleans). The same view renders as a form with four themes.',
+  },
+  {
+    title: 'Jjodie: AI assistance',
+    description:
+      'An assistant integrated in the Console that generates metamodels and models through JjScript, explains views and drafts documentation. Bring your own provider: OpenAI, Anthropic, Gemini, Mistral, DeepSeek, Groq, Kimi or a local Ollama.',
   },
   {
     title: 'Redesigned UI',
     description:
-      'Progressive disclosure throughout the interface. Basic and Advanced modes in every panel. Reduced cognitive load without sacrificing functionality. New Transformation Editor for defining and executing JjTL transformations.',
+      'Progressive disclosure throughout the interface, with Basic and Advanced modes in every panel. New Transformation Editor for defining and running JjTL transformations. Improved edge rendering with Manhattan routing.',
   },
   {
     title: 'Megamodel view',
     description:
-      'A project-level visualization showing all metamodels, models, transformations, and their relationships (conformsTo, inputOf, outputOf, generatedBy) in a single interactive diagram.',
+      'A project-level diagram showing all metamodels, models, transformations and their relationships (conformsTo, inputOf, outputOf, generatedBy).',
   },
   {
-    title: 'Improved Console',
+    title: 'Console and saving',
     description:
-      'Evaluate JjEL expressions interactively. Inspect model instances, query collections, navigate references. Context-aware with access to the current data object and node.',
+      'Multi-language Console with three modes (Jjodie, JjScript, JjEL) and meta-commands. A single Save project action, with autosave after 15 seconds of inactivity and at most every two minutes.',
   },
 ];
 ---
@@ -43,8 +58,10 @@ const features = [
     <section class="page-header">
       <h1>What's new in Jjodel 3.0</h1>
       <p class="page-header__subtitle">
-        Jjodel 3.0 introduces three domain-specific languages, a redesigned
-        interface, and a new transformation engine. The beta is available now.
+        Jjodel 3.0 will be released on 15 September 2026. It introduces three
+        domain-specific languages, a redesigned interface, a new transformation
+        engine and a Data Manager for working with model data. The beta is
+        available now.
       </p>
       <div class="page-header__cta">
         <a href="https://beta.jjodel.io" class="btn btn-primary" rel="noopener">
@@ -69,9 +86,10 @@ const features = [
     <section class="section">
       <h2>Status</h2>
       <p class="status-text">
-        Jjodel 3.0 is in beta. The core modeling infrastructure is stable. The
-        transformation pipeline (JjTL) and expression language (JjEL) are
-        functional with known limitations being addressed before the stable
+        Jjodel 3.0 will be released on 15 September 2026. Until then the beta
+        at beta.jjodel.io is in active development: the modeling core is
+        stable, while the Data Manager, the view designer and the languages are
+        still receiving fixes. Projects created in the beta will open in the
         release.
       </p>
       <p class="status-text">
@@ -93,6 +111,13 @@ const features = [
         the docs site.
       </p>
       <div class="docs-links">
+        <a
+          href="https://docs.jjodel.io/whats-new/"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          Full changelog ↗
+        </a>
         <a
           href="https://docs.jjodel.io/languages/jjel/"
           target="_blank"
