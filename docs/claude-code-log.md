@@ -1,5 +1,13 @@
 # Claude Code log
 
+## 2026-09-15 — feat: release day, ogni CTA punta alla 3.0 e i riferimenti alla beta spariscono
+
+**Prompt**: rimuovere tutti i riferimenti alla beta dal sito e sostituirli con la versione ufficiale 3.0 su app.jjodel.io
+**File toccati**: src/components/TryJjodelButton.astro, src/components/ReleaseBanner.astro, src/components/Announcement.astro, src/pages/whats-new.astro, docs/claude-code-log.md
+**Esito**: ✅ completato su `release-3-0`, preceduto dal merge di `main` (`a001b50`, conflitto risolto solo su questo log, nessun conflitto sotto src/). Due decisioni di Alfonso: lo split button diventa un link singolo ad app.jjodel.io perche' `old.jjodel.io` non risolve (NXDOMAIN verificato il 15/9), e la striscia della home passa al testo statico "Jjodel 3.0 is out" senza countdown. Rimosse anche le due menzioni in prosa di old.jjodel.io (modale e sezione Status di /whats-new/). Build verde con node 18.20.8 via nvm (il node di /usr/local/bin e' il 16 e Astro lo rifiuta). Verifiche su dist: `beta` 0 file, `old.jjodel.io` 0 file, trattini lunghi 0 su index/whats-new/activity/research, `app.jjodel.io` 7 occorrenze e `data-date` 3 in index.html (UpcomingBadge sopravvissuto al merge), badge del modale "Out now", zero residui di `try-jjodel-button__chevron` e `__menu`. Nessun push, `main` intatto
+**Note**: `src/lib/release.ts` resta in repo ma ora e' orfano, nessun import lo referenzia; la rimozione e' una decisione separata. Lavoro eseguito da Cowork via bridge desktop, non da Claude Code, quindi senza documento di prompt in docs/prompts/. Restano da ripulire i riferimenti alla beta su docs.jjodel.io (repo `jjodel-docs`): 24 occorrenze nella pagina /whats-new/
+**Nome del documento prompt**: 2026-09-15 22:05
+
 ## 2026-09-06 — feat: badge "Upcoming" sugli eventi futuri
 **Prompt**: badge Upcoming sulle attività con data futura, reso in build e ripulito lato client quando la data passa senza un nuovo build
 **File toccati**: src/components/UpcomingBadge.astro (nuovo), src/components/ActivityFeed.astro, src/pages/activity/index.astro, src/pages/research.astro, docs/claude-code-log.md
