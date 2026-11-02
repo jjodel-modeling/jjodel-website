@@ -1,5 +1,15 @@
 # Claude Code log
 
+## 2026-10-18: feat: Jjodel 3.1 sul sito, preparato su branch per il rilascio del 19 ottobre
+
+**Prompt**: banner, modale, pagina What's New e card Craft viewpoints aggiornati alla 3.1; Fase A su `release-3-1`, merge su GO dopo il deploy dell'app
+**File toccati**: src/components/ReleaseBanner.astro, src/components/Announcement.astro, src/pages/whats-new.astro, src/components/WhatYouCanDo.astro, docs/claude-code-log.md
+**Esito**: ✅ Fase A completata su `release-3-1` (tre commit di codice più questo log); copy del prompt usata alla lettera, `dismissKey` del modale `announcement-v31`. Build verde (Astro 4, node 22). In dist: trattini lunghi 0 su index e whats-new, "Jjodel 3.0" assente dalla home e presente una sola volta in /whats-new/ (titolo della sezione 3.0). Screenshot a 1280 e 375 px: griglie a due colonne su desktop e una su mobile, /whats-new/ senza scroll orizzontale. Nessun link nuovo nella sezione Documentation: `jjodel-docs` non ha una pagina sulla simulazione né su Derive viewpoint (la parola compare solo in user-guide/viewpoints.md, già linkata dalla card). Nessun push, `main` intatto
+**Note**: la home a 375 px ha uno scroll orizzontale (larghezza 468 px) dovuto alle righe di `WhatYouCanDo.astro` (`.wycd-code`); presente identico su `main`, quindi non introdotto qui e fuori scope. La pagina docs.jjodel.io/whats-new/, linkata come Full changelog, parla ancora della 3.0. Eseguito da Claude via bridge desktop, non da Claude Code
+**Correzione 2026-10-18**: tolta la voce Validation dall'elenco della 3.1 e dal sottotitolo e dalla description di /whats-new/, su indicazione di Alfonso (c'era già nella 3.0); le voci della 3.1 sono sette
+**Correzione 2026-11-02**: Fase B. Data portata al 27 ottobre 2026 (deploy di produzione della PR #195 di jjodel-frontend); voce Validation ripristinata, le voci tornano otto: il tag 3.0.0 aveva solo Live Validation, la decisione del 2026-10-23 la lascia come novita' della 3.1 in app e CHANGELOG. Eseguito da Claude via bridge desktop
+**Nome del documento prompt**: 2026-10-17 16:30
+
 ## 2026-09-15 — feat: release day, ogni CTA punta alla 3.0 e i riferimenti alla beta spariscono
 
 **Prompt**: rimuovere tutti i riferimenti alla beta dal sito e sostituirli con la versione ufficiale 3.0 su app.jjodel.io

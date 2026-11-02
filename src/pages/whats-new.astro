@@ -1,7 +1,50 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
 
-const features = [
+const features31 = [
+  {
+    title: 'Simulation',
+    description:
+      'Run your models step by step. Configure the semantics of a metamodel once in the Simulation panel, picking a profile (DFA, NFA, Moore, Mealy, state machine, Petri net, flowchart, activity) or composing your own from roles. Events are model instances, guards and actions are JjEL expressions, and state attributes are finite (boolean, enum, range), so a run can later be checked by a model checker.',
+  },
+  {
+    title: 'Inspecting a run',
+    description:
+      'Choose by hand or at random when more than one transition is enabled. Set watches and breakpoints on the state, step back, move through the run with the timeline slider, save a run as a replayable scenario, and see coverage on the canvas.',
+  },
+  {
+    title: 'I/O board',
+    description:
+      'Drive a running model from a board of buttons, switches, sliders, a keypad, LEDs and displays bound to its events and state. A clock device presses an event at a fixed period. The same bindings can be shown as a front panel with its own themes.',
+  },
+  {
+    title: 'Derive viewpoint',
+    description:
+      'Generate a complete viewpoint from a metamodel in one click, in the notation you choose: generic, ER (Chen), UML class, statechart, Petri net, flowchart or UML activity. Jjodel proposes which metaclass plays which role in the notation, you confirm or change it, and ELK lays out the result.',
+  },
+  {
+    title: 'Containers and Auto layout',
+    description:
+      'A node can now contain other nodes, drawn as frames and partitions: BPMN lanes, composite states and orthogonal regions of a statechart. Auto layout in the toolbar arranges the whole graph, containers included.',
+  },
+  {
+    title: 'Validation',
+    description:
+      'Write your own rules on a metamodel, run the Validate command, and see violations as dots on the offending instances.',
+  },
+  {
+    title: 'Symbol Editor',
+    description:
+      'Borders per side driven by conditions, corner radius set by rules, a cloud shape, and a preview on three instances while you edit.',
+  },
+  {
+    title: 'Smaller changes',
+    description:
+      'Views for edges and rows can be created from the canvas menus. Default views match the native rendering. Metaclasses with the same name in different metamodels are kept apart. Jjodie no longer proposes reserved names, and a malformed JjScript block no longer locks the tab.',
+  },
+];
+
+const features30 = [
   {
     title: 'JjTL: model-to-model transformations',
     description:
@@ -51,20 +94,21 @@ const features = [
 ---
 
 <BaseLayout
-  title="What's new in Jjodel 3.0 | Jjodel"
-  description="New features in Jjodel 3.0: JjTL transformations, JjEL expressions, redesigned UI, and more."
+  title="What's new in Jjodel 3.1 | Jjodel"
+  description="New in Jjodel 3.1: simulation, derived viewpoints, containers and validation."
 >
   <div class="container">
     <section class="page-header">
-      <h1>What's new in Jjodel 3.0</h1>
+      <h1>What's new in Jjodel 3.1</h1>
       <p class="page-header__subtitle">
-        Jjodel 3.0 introduces three domain-specific languages, a redesigned
-        interface, a new transformation engine and a Data Manager for working
-        with model data. Released on 15 September 2026.
+        Jjodel 3.1 makes models executable: you configure a semantics once and
+        run any model that conforms to the metamodel. It also derives viewpoints
+        from metamodels and adds containers and validation rules. Released on
+        27 October 2026.
       </p>
       <div class="page-header__cta">
         <a href="https://app.jjodel.io" class="btn btn-primary" rel="noopener">
-          Open Jjodel 3.0 →
+          Open Jjodel 3.1 →
         </a>
       </div>
     </section>
@@ -72,7 +116,25 @@ const features = [
     <section class="section">
       <div class="features-grid">
         {
-          features.map((f) => (
+          features31.map((f) => (
+            <div class="card feature-card">
+              <h3 class="feature-card__title">{f.title}</h3>
+              <p class="feature-card__desc">{f.description}</p>
+            </div>
+          ))
+        }
+      </div>
+    </section>
+
+    <section class="section">
+      <h2>Jjodel 3.0</h2>
+      <p class="status-text">
+        Released on 15 September 2026. Three domain-specific languages, a
+        redesigned interface, a new transformation engine and a Data Manager.
+      </p>
+      <div class="features-grid">
+        {
+          features30.map((f) => (
             <div class="card feature-card">
               <h3 class="feature-card__title">{f.title}</h3>
               <p class="feature-card__desc">{f.description}</p>
@@ -85,8 +147,8 @@ const features = [
     <section class="section">
       <h2>Status</h2>
       <p class="status-text">
-        Jjodel 3.0 is the current version, and it runs at app.jjodel.io.
-        Projects created with earlier versions open in 3.0.
+        Jjodel 3.1 is the current version, and it runs at app.jjodel.io.
+        Projects created with earlier versions open in 3.1.
       </p>
       <p class="status-text">
         Bug reports and feedback are welcome on{' '}
