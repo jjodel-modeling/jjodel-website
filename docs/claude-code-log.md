@@ -1,5 +1,13 @@
 # Claude Code log
 
+## 2026-11-02: docs: Jjodie panel, Refactorings e Templates nella lista della 3.1
+
+**Prompt**: elencare esattamente cosa c'e' di nuovo in 3.1
+**File toccati**: src/pages/whats-new.astro, docs/claude-code-log.md
+**Esito**: ✅ completato su `main`; build verde
+**Note**: la lista ora copre quanto e' in produzione dalla PR #195; il generatore di codice, spento di default, resta fuori
+**Nome del documento prompt**: 2026-11-02 22:21
+
 ## 2026-10-18: feat: Jjodel 3.1 sul sito, preparato su branch per il rilascio del 19 ottobre
 
 **Prompt**: banner, modale, pagina What's New e card Craft viewpoints aggiornati alla 3.1; Fase A su `release-3-1`, merge su GO dopo il deploy dell'app
