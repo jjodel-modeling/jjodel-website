@@ -1,6 +1,49 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
 
+const features32 = [
+  {
+    title: 'Models as text',
+    description:
+      'A model also opens as text, in a syntax derived from its metamodel and named after the language. The Text tab sits beside the canvas, and selection follows between the two. Completion, a hover card, outline, rename, formatting and quick fixes come from the same grammar, and validation problems show as markers. Available in Advanced mode.',
+  },
+  {
+    title: 'Editing a model from its text',
+    description:
+      'Edit the text and the model follows: the edit is compared with the model and applied, moves and reorders included. When objects are renamed or reordered, a confirm panel lists the planned pairings before anything is written. A model\'s text can be exported and imported as a file.',
+  },
+  {
+    title: 'Syntax styles',
+    description:
+      'Choose a C-like or a Pascal/Ada style, set the indentation, and override keywords per token or per block, in a Syntax form or directly in EBNF. Expressions can be written with operators.',
+  },
+  {
+    title: 'Code generation',
+    description:
+      'Templates over a metamodel, generators listed in the left bar, and a Template Editor with live preview. The generated JavaScript runs in the browser, and Check compares a run with the Jjodel simulator. Available in Advanced mode.',
+  },
+  {
+    title: 'Side by side',
+    description:
+      'Open a second tab on the same model, or a model beside another, each pane with its own viewpoint. The two panes share one palette, the active pane\'s, and the inactive pane runs no command.',
+  },
+  {
+    title: 'View panel',
+    description:
+      'Every property of a vertex, edge or container view that was reachable only from the Source tab now has a control in the panel, and every conditional property has a rules table.',
+  },
+  {
+    title: 'Transformations over several models',
+    description:
+      'A JjTL run reads several source models of one metamodel. Rules can be called, lazy or delegating, let keeps its value, forall ranges over several variables, and targets are placed inside their container. Errors name the rule and the source element.',
+  },
+  {
+    title: 'Smaller changes',
+    description:
+      'In JjEL, is follows the class hierarchy, == compares model objects by identity, and and/or short-circuit. Dropping a .jjodel file on the dashboard imports it. Tips and announcements appear in the Help menu and beside the Jjodie button. Large models open without an automatic layout above 500 nodes.',
+  },
+];
+
 const features31 = [
   {
     title: 'Simulation',
@@ -124,6 +167,25 @@ const features30 = [
     </section>
 
     <section class="section">
+      <h2>Coming in Jjodel 3.2</h2>
+      <p class="status-text">
+        Jjodel 3.2 is in beta from 18 November 2026. The current release is
+        still 3.1; the items below reach app.jjodel.io with 3.2.
+      </p>
+      <div class="features-grid">
+        {
+          features32.map((f) => (
+            <div class="card feature-card">
+              <h3 class="feature-card__title">{f.title}</h3>
+              <p class="feature-card__desc">{f.description}</p>
+            </div>
+          ))
+        }
+      </div>
+    </section>
+
+    <section class="section">
+      <h2>Jjodel 3.1</h2>
       <div class="features-grid">
         {
           features31.map((f) => (
